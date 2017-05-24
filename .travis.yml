@@ -5,11 +5,12 @@ jdk:
 
 # git strips the wrapper jar file so we have to force its download during the build
 
-# The below works fine but trying to work .gitignore changes
-#install:
+before_install:
+  - chmod +x mvnw
 
+install:
 # - mvn -N io.takari:maven:wrapper
-#- ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+- ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
 script:
 - ./mvnw test
