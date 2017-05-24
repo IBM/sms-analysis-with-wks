@@ -3,6 +3,9 @@ language: java
 jdk:
   - oraclejdk8
 
+before_install:
+  - chmod +x mvnw
+
 script:
-- ./maven test
-- ./maven javadoc:aggregate
+- ./mvnw test
+- ./mvnw javadoc:aggregate
