@@ -1,4 +1,9 @@
+/*
+ * This class play a role of NLU client. It analyzes the sms fed to it and extracts entity data.
+ */
+		
 package com.ibm.watson.nlu;
+
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.NaturalLanguageUnderstanding;
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.AnalysisResults;
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.AnalyzeOptions;

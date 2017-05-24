@@ -1,0 +1,12 @@
+---
+declared-services:
+  Natural Language Understanding-sms:
+    label: natural_language_understanding
+    plan: free
+applications:
+- name: cognitive-sms-client
+  memory: 512M
+  path: target/cognitive-sms-client.jar
+  buildpack: sdk-for-java
+  services:
+  - Natural Language Understanding-sms
