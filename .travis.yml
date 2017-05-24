@@ -4,5 +4,5 @@ jdk:
   - oraclejdk8
 
 script:
-- ./mvnw test
-- ./mvnw javadoc:aggregate
+- ./maven test
+- ./maven javadoc:aggregate
