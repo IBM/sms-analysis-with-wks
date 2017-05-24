@@ -6,7 +6,7 @@ jdk:
 # git strips the wrapper jar file so we have to force its download during the build
 
 before_install:
-  - chmod +x mvnw
+  git update-index --chmod=+x mvnw
 
 install:
 # - mvn -N io.takari:maven:wrapper
