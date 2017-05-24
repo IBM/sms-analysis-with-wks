@@ -3,3 +3,11 @@
 This is cognitive sms client which uses natural language understanding capability to analyze the sms and extracts entity data required.
 
 ## Maven
+If Apache Maven is being used, the following dependency should be included:
+```xml
+  	<dependency>
+  		<groupId>com.ibm.watson.developer_cloud</groupId>
+  		<artifactId>cognitive-client-java</artifactId>
+  		<version>1.0</version>
+  	</dependency> 	
+```
