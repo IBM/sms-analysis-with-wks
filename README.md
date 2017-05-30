@@ -7,7 +7,7 @@ If Apache Maven is being used, the following dependency should be included:
 ```xml
   	<dependency>
   		<groupId>com.ibm.watson.developer_cloud</groupId>
-  		<artifactId>cognitive-client-java</artifactId>
+  		<artifactId>java-sdk</artifactId>
   		<version>1.0</version>
   	</dependency> 	
 ```
