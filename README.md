@@ -14,7 +14,7 @@ If Apache Maven is being used, the following dependency should be included:
 
 ## Process Flow
 
-<img src="images/WKS-NLU-processh.png" width="800" height="350" align="center">
+<img src="images/WKS-NLU-process.png" width="800" height="350" align="center">
 
 ## Technical Architecture
 
