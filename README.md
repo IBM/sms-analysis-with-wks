@@ -14,7 +14,7 @@ If Apache Maven is being used, the following dependency should be included:
 
 ## Process Flow
 
-<img src="images/Process flow for WKS-NLU-processh.png" width="800" height="350" align="center">
+<img src="images/WKS-NLU-processh.png" width="800" height="350" align="center">
 
 ## Technical Architecture
 
@@ -30,6 +30,6 @@ If Apache Maven is being used, the following dependency should be included:
 
 
 ## Deploy the Machine learning model to NLU
-<img src="images/wks-nlu-deploy-1" width="800" height="350" align="center">
+<img src="images/wks-nlu-deploy-1.png" width="800" height="350" align="center">
 
 <img src="images/wks-nlu-deploy-2.png" width="800" height="350" align="center">
