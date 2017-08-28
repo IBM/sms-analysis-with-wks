@@ -10,6 +10,8 @@ In such commercial sms usually interesting entities to be extracted are
    3. offer name(if present in sms)
    4. offer validity period
 
+The secondary info like merchant phone, website link etc. may also be captured if required.
+
 The above requirement can be achieved by using our cognitive sms analysis.
 
 ## Maven
