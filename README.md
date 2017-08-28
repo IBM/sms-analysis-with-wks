@@ -2,6 +2,16 @@
 [![Build Status](https://travis-ci.org/IBM/watson-online-store.svg?branch=master)](https://travis-ci.org/ragudiko/wks-nlu-sms-analysis)
 This is cognitive sms client which uses natural language understanding capability to analyze the sms and extracts entity data required.
 
+Background: Current natural language processing techniques cannot extract/interpret the data as required by domain/industry specific. The data(entities) represent different meaning in different domain. Best answer to such problem is IBM Watson Knowledge Studio.
+Consider an example where we need to extract entities present in commercial sms.
+In such commercial sms usually interesting entities to be extracted are
+   1. what is the offer
+   2. who is providing(merchant)
+   3. offer name(if present in sms)
+   4. offer validity period
+
+The above requirement can be achieved by using our cognitive sms analysis.
+
 ## Maven
 If Apache Maven is being used, the following dependency should be included:
 ```xml
@@ -47,10 +57,10 @@ curl -u "username":"password" "https://gateway.watsonplatform.net/natural-langua
 
 Replace username/password highlighted with your NLU service credentials. The entities.model is the wks machine learning model id. The sms text has to be URL encoded as it is passed as url query string in Curl command.
 
-# Get your hands on with the NLU api and wks tool
+# Get your hands on with the NLU api and WKS tool
 You can register at https://console.bluemix.net to access NLU.
 
 You can try free version of WKS : https://www.ibm.com/in-en/marketplace/supervised-machine-learning
 
-# Additional Resource
+## Additional Resource
 You can refer https://github.com/rameshpoomalai/ProcurementSystem for procurement use case where we have used WKS, Discovery and IBM Graph.
