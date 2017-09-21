@@ -1,0 +1,100 @@
+{
+  "language": "en",
+  "analyzed_text": "Get 1+1 on booking Cinepolis Cinemas tickets on XYZ. Use code: LOVEFEB to avail the offer. Max. Cashback* Rs.500. Click http://m.p-y.tm/mcn. *T&C apply",
+  "usage": {
+    "features": 1
+  },
+  "entities": [
+    {
+      "type": "Offer",
+      "count": 1,
+      "text": "Get 1+1 on booking Cinepolis Cinemas tickets on XYZ",
+      "sentiment": {
+        "score": 0.670592
+      },
+      "disambiguation": {
+        "subtype": [
+          "NONE"
+        ]
+      }
+    },
+    {
+      "type": "Coupon",
+      "count": 1,
+      "text": "code",
+      "sentiment": {
+        "score": 0.0
+      },
+      "disambiguation": {
+        "subtype": [
+          "NONE"
+        ]
+      }
+    },
+    {
+      "type": "Coupon_Code",
+      "count": 1,
+      "text": "LOVEFEB",
+      "sentiment": {
+        "score": 0.448558
+      },
+      "disambiguation": {
+        "subtype": [
+          "NONE"
+        ]
+      }
+    },
+    {
+      "type": "Merchant",
+      "count": 1,
+      "text": "Max",
+      "sentiment": {
+        "score": 0.0
+      },
+      "disambiguation": {
+        "subtype": [
+          "NONE"
+        ]
+      }
+    },
+    {
+      "type": "Offer",
+      "count": 1,
+      "text": "Cashback* Rs.500",
+      "sentiment": {
+        "score": 0.449574
+      },
+      "disambiguation": {
+        "subtype": [
+          "NONE"
+        ]
+      }
+    },
+    {
+      "type": "Merchant_Website_Link",
+      "count": 1,
+      "text": "http://m.p-y.tm/mcn.",
+      "sentiment": {
+        "score": 0.0
+      },
+      "disambiguation": {
+        "subtype": [
+          "NONE"
+        ]
+      }
+    },
+    {
+      "type": "Term_and_Conditions",
+      "count": 1,
+      "text": "T&C",
+      "sentiment": {
+        "score": 0.0
+      },
+      "disambiguation": {
+        "subtype": [
+          "NONE"
+        ]
+      }
+    }
+  ]
+}
