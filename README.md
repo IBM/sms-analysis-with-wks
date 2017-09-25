@@ -79,9 +79,11 @@ export JAVA_HOME
 
 
 M2_HOME=/usr/local/apache-maven/apache-maven-3.1.1
+
 export M2_HOME
 
 PATH=$PATH:$JAVA_HOME/bin:$M2_HOME/bin
+
 export PATH
 
 -- -- entry ends
