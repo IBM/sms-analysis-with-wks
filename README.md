@@ -73,6 +73,7 @@ Install Maven: https://maven.apache.org/install.html
 Configure maven: Open .bash_profile if exists, else create new .bash_profile file. Make below entries into .bash_profile file.
 
 -- -- entry starts
+
 JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_40.jdk/Contents/Home
 export JAVA_HOME
 
