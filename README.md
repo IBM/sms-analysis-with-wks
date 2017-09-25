@@ -89,7 +89,8 @@ export PATH
 
 -- -- entry ends
 
-Now from terminal line run
+Now from terminal run below command
+
 mvn test
 
 # Get your hands on with the NLU api and WKS tool
