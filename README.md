@@ -72,7 +72,7 @@ Download Maven : https://maven.apache.org/download.cgi
 Install Maven: https://maven.apache.org/install.html
 Configure maven: Open .bash_profile if exists, else create new .bash_profile file. Make below entries into .bash_profile file.
 
-### entry starts
+-- -- entry starts
 JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_40.jdk/Contents/Home
 export JAVA_HOME
 
@@ -83,7 +83,7 @@ export M2_HOME
 PATH=$PATH:$JAVA_HOME/bin:$M2_HOME/bin
 export PATH
 
-### entry ends
+-- -- entry ends
 
 Now from terminal line run
 mvn test
