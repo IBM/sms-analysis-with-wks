@@ -69,7 +69,9 @@ Once you build wks model and NLU api service you can replace username/password h
 
 ## Run JUnits using maven command
 Download Maven : https://maven.apache.org/download.cgi
+
 Install Maven: https://maven.apache.org/install.html
+
 Configure maven: Open .bash_profile if exists, else create new .bash_profile file. Make below entries into .bash_profile file.
 
 -- -- entry starts
