@@ -78,7 +78,7 @@ public class SimpleNLUClient {
 	public static void main(String a[]){
 		SimpleNLUClient client = new SimpleNLUClient();
 		client.initService("de40afab-f410-4012-bb00-2d878ffc18f2", "oclD356nMDxV", "");
-		AnalysisResults response = client.analyze("10:8a91f680-4eb0-4c7b-b37e-193bb124bc18","Get 1+1 on booking Cinepolis Cinemas tickets on XYZ. Use code: LOVEFEB to avail the offer. Max. Cashback* Rs.500. Click http://m.p-y.tm/mcn. *T&C apply");
+		AnalysisResults response = client.analyze("10:83daf421-4a2d-478c-9c74-755e560bf9ee","Get 1+1 on booking Cinepolis Cinemas tickets on XYZ. Use code: LOVEFEB to avail the offer. Max. Cashback* Rs.500. Click http://m.p-y.tm/mcn. *T&C apply");
 		System.out.println("Result:"+response);
 	}
 }
