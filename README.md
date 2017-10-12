@@ -107,7 +107,4 @@ You can refer https://github.com/rameshpoomalai/ProcurementSystem for procuremen
 
 ## Deploy the App
 
-Click on the 'Deploy to Bluemix' button below.
-[![![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ragudiko/wks-nlu-sms-analysis)
-
    [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ragudiko/wks-nlu-sms-analysis)
