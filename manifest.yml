@@ -1,12 +1,15 @@
 ---
 declared-services:
-  Natural Language Understanding-sms:
-    label: natural_language_understanding
+  sms_nlu_service:
+    label: natural-language-understanding
     plan: free
 applications:
 - name: cognitive-sms-client
   memory: 512M
-  path: target/cognitive-sms-client.jar
-  buildpack: sdk-for-java
+  path: output/webApp.war
+  disk_quota: 1024M
+  domain: mybluemix.net
+  host: cognitive-sms-offers
+  buildpack: liberty-for-java
   services:
-  - Natural Language Understanding-sms
+  - sms_nlu_service

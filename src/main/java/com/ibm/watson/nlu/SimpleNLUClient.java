@@ -10,7 +10,6 @@ import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.An
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.EntitiesOptions;
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.Features;
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.ListModelsResults;
-
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.AnalyzeOptions.Builder;
 
 public class SimpleNLUClient {
@@ -41,12 +40,6 @@ public class SimpleNLUClient {
 
 	public AnalysisResults	 analyze(String modelId, String smsText){
 
-		// ListModelsResults models = service
-		// 		  .getModels()
-		// 		  .execute();
-		// 		System.out.println(models);
-
-
 		EntitiesOptions entities = new EntitiesOptions.Builder()
 	            .emotion(false)
 	            //.limit(maxResponses)
@@ -68,6 +61,7 @@ public class SimpleNLUClient {
     try {
 
         results = service.analyze(parameters).execute();
+				System.out.println("Results:>>"+results);
     }
     catch (Exception e) {
     	e.printStackTrace();

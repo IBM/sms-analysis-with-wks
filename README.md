@@ -1,5 +1,7 @@
+
 # wks-nlu-sms-analysis
-[![Build Status](https://travis-ci.org/IBM/watson-online-store.svg?branch=master)](https://travis-ci.org/ragudiko/wks-nlu-sms-analysis)
+![Build Status](https://travis-ci.org/rameshpoomalai/ProcurementSystem.svg?branch=master)
+![Bluemix Deployments](https://deployment-tracker.mybluemix.net/stats/4b751f79e33f1202fce05f6ba8c0e740/badge.svg)
 This is cognitive sms client which uses natural language understanding capability to analyze the sms and extracts entity data required.
 
 Background: Current natural language processing techniques cannot extract/interpret the data as required by domain/industry specific. The data(entities) represent different meaning in different domain. Best answer to such problem is IBM Watson Knowledge Studio.
@@ -74,3 +76,8 @@ You can try free version of WKS : https://www.ibm.com/in-en/marketplace/supervis
 
 ## Additional Resource
 You can refer https://github.com/rameshpoomalai/ProcurementSystem for procurement use case where we have used WKS, Discovery and IBM Graph.
+
+## Deploy the App
+
+Click on the 'Deploy to Bluemix' button below.
+![![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ragudiko/wks-nlu-sms-analysis)
