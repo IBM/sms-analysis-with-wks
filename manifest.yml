@@ -2,7 +2,7 @@
 declared-services:
   sms_nlu_service:
     label: natural-language-understanding
-    plan: free
+    plan: Lite
 applications:
 - name: cognitive-sms-client
   memory: 512M
