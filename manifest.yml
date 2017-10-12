@@ -10,7 +10,7 @@ applications:
   disk_quota: 1024M
   domain: mybluemix.net
   random-route: true
-  host: cognitive-sms-offers
+  host: cognitive-sms-analyzer
   buildpack: liberty-for-java
   services:
   - sms_nlu_service
