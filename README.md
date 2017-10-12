@@ -69,6 +69,34 @@ Output:{ "language": "en", "entities": [ { "type": "Merchant", "text": "DUNKI DO
 
 Once you build wks model and NLU api service you can replace username/password highlighted with your NLU service credentials. Replace wks model id(entities.model) with your wks model id. The sms text has to be URL encoded as it is passed as url query string in Curl command.
 
+## Run JUnits using maven command
+Download Maven : https://maven.apache.org/download.cgi
+
+Install Maven: https://maven.apache.org/install.html
+
+Configure maven: Open .bash_profile if exists, else create new .bash_profile file. Make below entries into .bash_profile file.
+
+-- -- entry starts
+
+JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_40.jdk/Contents/Home
+
+export JAVA_HOME
+
+
+M2_HOME=/usr/local/apache-maven/apache-maven-3.1.1
+
+export M2_HOME
+
+PATH=$PATH:$JAVA_HOME/bin:$M2_HOME/bin
+
+export PATH
+
+-- -- entry ends
+
+Now from terminal run below command
+
+mvn test
+
 # Get your hands on with the NLU api and WKS tool
 You can register at https://console.bluemix.net to access NLU.
 
