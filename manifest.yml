@@ -9,6 +9,7 @@ applications:
   path: output/webApp.war
   disk_quota: 1024M
   domain: mybluemix.net
+  random-route: true
   host: cognitive-sms-offers
   buildpack: liberty-for-java
   services:
