@@ -1,7 +1,7 @@
 
 # wks-nlu-sms-analysis
-![Build Status](https://travis-ci.org/rameshpoomalai/ProcurementSystem.svg?branch=master)
-![Bluemix Deployments](https://deployment-tracker.mybluemix.net/stats/4b751f79e33f1202fce05f6ba8c0e740/badge.svg)
+![Build Status](https://travis-ci.org/ragudiko/wks-nlu-sms-analysis.svg?branch=master)
+![Bluemix Deployments](https://deployment-tracker.mybluemix.net/stats/2beb5ac0f2b130c628328825c48f65c5/badge.svg)
 This is cognitive sms client which uses natural language understanding capability to analyze the sms and extracts entity data required.
 
 Background: Current natural language processing techniques cannot extract/interpret the data as required by domain/industry specific. The data(entities) represent different meaning in different domain. Best answer to such problem is IBM Watson Knowledge Studio.
