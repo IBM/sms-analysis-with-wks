@@ -51,7 +51,7 @@ public class DemoServlet extends HttpServlet {
 	private String baseURL = "<url>";
 	private String username = "<username>";
 	private String password = "<password>";
-	private String modelId = ""
+	private String modelId = "";
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
