@@ -44,8 +44,7 @@ public class SimpleNLUClient {
 	            .emotion(false)
 	            //.limit(maxResponses)
 	            .sentiment(true)
-	            .model(modelId) //Alpharithm
-	            //.model("10:7b2e3bde-f937-4318-aa71-54760405aab1") //Alpharithm_msg21_to_30_msg37_msg39_duplicates
+	            .model(modelId)
 	            .build();
 
 		Features features = new Features.Builder().entities(entities).build();
@@ -69,10 +68,10 @@ public class SimpleNLUClient {
     }
 		return results;
 	}
-	public static void main(String a[]){
+	/*public static void main(String a[]){
 		SimpleNLUClient client = new SimpleNLUClient();
 		client.initService("de40afab-f410-4012-bb00-2d878ffc18f2", "oclD356nMDxV", "");
 		AnalysisResults response = client.analyze("10:8a91f680-4eb0-4c7b-b37e-193bb124bc18","Get 1+1 on booking Cinepolis Cinemas tickets on XYZ. Use code: LOVEFEB to avail the offer. Max. Cashback* Rs.500. Click http://m.p-y.tm/mcn. *T&C apply");
 		System.out.println("Result:"+response);
-	}
+	}*/
 }
