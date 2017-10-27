@@ -51,6 +51,7 @@ public class DemoServlet extends HttpServlet {
 	private String baseURL = "<url>";
 	private String username = "<username>";
 	private String password = "<password>";
+	private String modelId = ""
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -85,7 +86,7 @@ public class DemoServlet extends HttpServlet {
 		try {
 			SimpleNLUClient client = new SimpleNLUClient();
 			client.initService(username, password, "");
-			AnalysisResults response = client.analyze("",text);
+			AnalysisResults response = client.analyze(modelId,text);
 			resp.getWriter().println(response);
 			//resp.getWriter().println("{ \"language\": \"en\", \"entities\": [ { \"type\": \"Merchant\", \"text\": \"DUNKI DONUTS\", \"count\": 1 }, { \"type\": \"Location\", \"text\": \"Girgaum\", \"count\": 1 },"+
 			//" { \"type\": \"Offer\", \"text\": \"Get 3 FREE\", \"count\": 1 }, { \"type\": \"Offer_Period\", \"text\": \"Valid till 15 Feb 2017\", \"count\": 1 }, { \"type\": \"Term_and_Conditions\", \"text\": \"T&C\", \"count\": 1 } ] }");
@@ -100,6 +101,7 @@ public class DemoServlet extends HttpServlet {
 	public void init() throws ServletException {
 		super.init();
 		processVCAPServices();
+		modelId = System.getenv("modelId");
 	}
 
 	/**
