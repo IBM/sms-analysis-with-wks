@@ -59,24 +59,36 @@ If Apache Maven is being used, the following dependency should be included:
 <img src="images/wks/Create new workspace.png" width="800" height="350" align="center">
 <img src="images/wks/Workspace creation done.png" width="800" height="350" align="center">
 
-3. Import Type System
+3. Create Type System (Step 3 is provided for reference, you can go directly to step 4)
+<img src="images/wks/Type System-1.png" width="800" height="350" align="center">
+<img src="images/wks/Type System-2- create type system entry.png" width="800" height="350" align="center">
+<img src="images/wks/Type System-3- type system entry saved.png" width="800" height="350" align="center">
+
+4. Import Type System
 <img src="images/wks/Type System-4- upload type system entry.png" width="800" height="350" align="center">
 <img src="images/wks/Type System-5- entries.png" width="800" height="350" align="center">
 <img src="images/wks/Type System-6- create relation entry.png" width="800" height="350" align="center">
 <img src="images/wks/Type System-7- relation entries.png" width="800" height="350" align="center">
 
-4. Import Corpus Documents
+5. Upload Documents (Step 5 is provided for reference, you can go directly to step 6)
+<img src="images/wks/Documents-1-page.png" width="800" height="350" align="center">
+<img src="images/wks/Documents-4-upload documents.png" width="800" height="350" align="center">
+<img src="images/wks/Documents-3-upload documents.png" width="800" height="350" align="center">
+<img src="images/wks/Documents-4-upload documents.png" width="800" height="350" align="center">
+<img src="images/wks/Documents-5-upload documents.png" width="800" height="350" align="center">
+
+6. Import Corpus Documents
 <img src="images/wks/Documents-4-upload corpus documents.png" width="800" height="350" align="center">
 <img src="images/wks/Documents-5-upload corpus documents.png" width="800" height="350" align="center">
 <img src="images/wks/Documents-6-upload corpus documents.png" width="800" height="350" align="center">
 <img src="images/wks/Documents-6-rename.png" width="800" height="350" align="center">
 <img src="images/wks/Documents-7-rename.png" width="800" height="350" align="center">
 
-5. Create Annotation Set
+7. Create Annotation Set
 <img src="images/wks/Documents-9-create annotation set.png" width="800" height="350" align="center">
 <img src="images/wks/Documents-10-create annotation set.png" width="800" height="350" align="center">
 
-6. Create Task for Human Annotation
+8. Create Task for Annotation
 <img src="images/wks/Task-1-page.png" width="800" height="350" align="center">
 <img src="images/wks/Task-2-create task.png" width="800" height="350" align="center">
 
@@ -95,7 +107,7 @@ If Apache Maven is being used, the following dependency should be included:
 <img src="images/wks/Task-12-annotation-documents status.png" width="800" height="350" align="center">
 <img src="images/wks/Task-13-annotation-documents status.png" width="800" height="350" align="center">
 
-7. Submit Annotation Set for which human annotation is complete
+### Submit Annotation Set for which human annotation is complete
 <img src="images/wks/Task-14-annotation-submit annotated documents.png" width="800" height="350" align="center">
 <img src="images/wks/Task-15-annotation-documents completed status.png" width="800" height="350" align="center">
 <img src="images/wks/Task-16-annotation-green-status completed.png" width="800" height="350" align="center">
@@ -104,7 +116,7 @@ If Apache Maven is being used, the following dependency should be included:
 <img src="images/wks/Task-19-annotation-annotation set -accept.png" width="800" height="350" align="center">
 <img src="images/wks/Task-20-annotation-annotation set -accept-status completed.png" width="800" height="350" align="center">
 
-8. Create model, train and evaluate
+### Create model, train and evaluate
 <img src="images/wks/Model Training and Evaluation-1.png" width="800" height="350" align="center">
 <img src="images/wks/Model Training and Evaluation-2.png" width="800" height="350" align="center">
 <img src="images/wks/Model Training and Evaluation-3.png" width="800" height="350" align="center">
@@ -113,7 +125,7 @@ If Apache Maven is being used, the following dependency should be included:
 <img src="images/wks/Model Training and Evaluation-6-logs.png" width="800" height="350" align="center">
 <img src="images/wks/Model Training and Evaluation-7-multiple training and evaluation completed.png" width="800" height="350" align="center">
 
-9. Deploy the Machine Learning model to NLU
+## Deploy the Machine Learning model to NLU
 <img src="images/wks/Model Deployment-1.png" width="800" height="350" align="center">
 <img src="images/wks/Model Deployment-2.png" width="800" height="350" align="center">
 <img src="images/wks/Model Deployment-3.png" width="800" height="350" align="center">
@@ -176,7 +188,7 @@ mvn test
 # Get your hands on with the NLU api and WKS tool
 You can register at https://console.bluemix.net to access NLU.
 
-You can try free version of WKS by logging into https://console.bluemix.net and select knowledge studio service under Watson
+You can try free version of WKS : https://www.ibm.com/in-en/marketplace/supervised-machine-learning
 
 ## Additional Resource
 You can refer https://github.com/rameshpoomalai/ProcurementSystem for procurement use case where we have used WKS, Discovery and IBM Graph.
