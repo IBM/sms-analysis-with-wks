@@ -40,11 +40,73 @@ If Apache Maven is being used, the following dependency should be included:
 2. The NLU analyzes the sms and extracts the domain specific entities.
 3. The extracted entities will provide info like what is the offer, who is providing offer and offer valid date etc.
 
+## Create NLU service
+<img src="images/nlu/Create nlu service-1.png" width="800" height="350" align="center">
+<img src="images/nlu/Create nlu service-2.png" width="800" height="350" align="center">
+<img src="images/nlu/Create nlu service-3.png" width="800" height="350" align="center">
+<img src="images/nlu/Create nlu service-4.png" width="800" height="350" align="center">
+<img src="images/nlu/Create nlu service-5.png" width="800" height="350" align="center">
+
+## Create WKS workspace
+<img src="images/wks/Dashboard.png" width="800" height="350" align="center">
+<img src="images/wks/Creating knowledge studio service-1.png" width="800" height="350" align="center">
+<img src="images/wks/Creating knowledge studio service-2.png" width="800" height="350" align="center">
+<img src="images/wks/knowledge studio launch page.png" width="800" height="350" align="center">
+<img src="images/wks/Workspace page.png" width="800" height="350" align="center">
+<img src="images/wks/Create new workspace.png" width="800" height="350" align="center">
+<img src="images/wks/Workspace creation done.png" width="800" height="350" align="center">
+<img src="images/wks/Type System-1.png" width="800" height="350" align="center">
+<img src="images/wks/Type System-2- create type system entry.png" width="800" height="350" align="center">
+<img src="images/wks/Type System-3- type system entry saved.png" width="800" height="350" align="center">
+<img src="images/wks/Type System-4- upload type system entry.png" width="800" height="350" align="center">
+<img src="images/wks/Type System-5- entries.png" width="800" height="350" align="center">
+<img src="images/wks/Type System-6- create relation entry.png" width="800" height="350" align="center">
+<img src="images/wks/Type System-7- relation entries.png" width="800" height="350" align="center">
+<img src="images/wks/Documents-1-page.png" width="800" height="350" align="center">
+<img src="images/wks/Documents-4-upload documents.png" width="800" height="350" align="center">
+<img src="images/wks/Documents-3-upload documents.png" width="800" height="350" align="center">
+<img src="images/wks/Documents-4-upload documents.png" width="800" height="350" align="center">
+<img src="images/wks/Documents-5-upload documents.png" width="800" height="350" align="center">
+<img src="images/wks/Documents-6-rename.png" width="800" height="350" align="center">
+<img src="images/wks/Documents-7-rename.png" width="800" height="350" align="center">
+<img src="images/wks/Documents-9-create annotation set.png" width="800" height="350" align="center">
+<img src="images/wks/Documents-10-create annotation set.png" width="800" height="350" align="center">
+<img src="images/wks/Task-1-page.png" width="800" height="350" align="center">
+<img src="images/wks/Task-2-create task.png" width="800" height="350" align="center">
+<img src="images/wks/Task-3-create task-select annotation set.png" width="800" height="350" align="center">
+<img src="images/wks/Task-4-task created.png" width="800" height="350" align="center">
+<img src="images/wks/Task-5-list of annotation set for this task.png" width="800" height="350" align="center">
+<img src="images/wks/Task-6-list of documents within annotation set chosen.png" width="800" height="350" align="center">
+<img src="images/wks/Task-7-start annotation-ground truth editor.png" width="800" height="350" align="center">
+<img src="images/wks/Task-8-annotation-ground truth editor.png" width="800" height="350" align="center">
+<img src="images/wks/Task-9-annotation-ground truth editor.png" width="800" height="350" align="center">
+<img src="images/wks/Task-10-annotation-ground truth editor.png" width="800" height="350" align="center">
+<img src="images/wks/Task-11-annotation-ground truth editor.png" width="800" height="350" align="center">
+<img src="images/wks/Task-12-annotation-documents status.png" width="800" height="350" align="center">
+<img src="images/wks/Task-13-annotation-documents status.png" width="800" height="350" align="center">
+<img src="images/wks/Task-14-annotation-submit annotated documents.png" width="800" height="350" align="center">
+<img src="images/wks/Task-15-annotation-documents completed status.png" width="800" height="350" align="center">
+<img src="images/wks/Task-16-annotation-green-status completed.png" width="800" height="350" align="center">
+<img src="images/wks/Task-17-annotation-annotation set -submitted status.png" width="800" height="350" align="center">
+<img src="images/wks/Task-18-annotation-annotation set -accept.png" width="800" height="350" align="center">
+<img src="images/wks/Task-19-annotation-annotation set -accept.png" width="800" height="350" align="center">
+<img src="images/wks/Task-20-annotation-annotation set -accept-status completed.png" width="800" height="350" align="center">
+<img src="images/wks/Model Training and Evaluation-1.png" width="800" height="350" align="center">
+<img src="images/wks/Model Training and Evaluation-2.png" width="800" height="350" align="center">
+<img src="images/wks/Model Training and Evaluation-3.png" width="800" height="350" align="center">
+<img src="images/wks/Model Training and Evaluation-4-training in progress.png" width="800" height="350" align="center">
+<img src="images/wks/Model Training and Evaluation-5-training and evaluation completed.png" width="800" height="350" align="center">
+<img src="images/wks/Model Training and Evaluation-6-logs.png" width="800" height="350" align="center">
+<img src="images/wks/Model Training and Evaluation-7-multiple training and evaluation completed.png" width="800" height="350" align="center">
 
 ## Deploy the Machine learning model to NLU
-<img src="images/wks-nlu-deploy-1.png" width="800" height="350" align="center">
+<img src="images/wks/Model Deployment-1.png" width="800" height="350" align="center">
+<img src="images/wks/Model Deployment-2.png" width="800" height="350" align="center">
+<img src="images/wks/Model Deployment-3.png" width="800" height="350" align="center">
+<img src="images/wks/Model Deployment-4.png" width="800" height="350" align="center">
 
-<img src="images/wks-nlu-deploy-2.png" width="800" height="350" align="center">
+
+
 
 Usage
 You can run simple java client provided in this project to extract the entities from sms.
