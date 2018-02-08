@@ -72,6 +72,7 @@ If Apache Maven is being used, the following dependency should be included:
 ![](doc/source/images/wks/type_system-7_relation_entries.png)
 
 4. Import Corpus Documents navigating to wks-resources/corpus-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.zip
+### If you do not want corpus documents, you can fresh documents. For beginners we recommend to upload the corpus documents.
 <img src="doc/source/images/wks/documents-2-upload_corpus_documents.png" width="800" height="350" align="center">
 <img src="doc/source/images/wks/documents-3-upload_corpus_documents.png" width="800" height="350" align="center">
 <img src="doc/source/images/wks/documents-4-upload_corpus_documents.png" width="800" height="350" align="center">
@@ -88,7 +89,6 @@ If Apache Maven is being used, the following dependency should be included:
 ![](doc/source/images/wks/documents-10-create_annotation_set.png)
 
 6. Create Task for Human Annotation
-## Since we imported corpus documents, we have already have annotation done for you. You can look at entities and relationships already annotated. You can annotate mentions(occurrences of words/phrases which can be annotated as entity). If you do not want corpus documents, you can fresh documents in step 4.
 <img src="doc/source/images/wks/task-1-page.png" width="800" height="350" align="center">
 <img src="doc/source/images/wks/task-2-create_task.png" width="800" height="350" align="center">
 ![](doc/source/images/wks/task-1-page.png)
@@ -107,6 +107,7 @@ If Apache Maven is being used, the following dependency should be included:
 ![](doc/source/images/wks/task-7-start_annotation-ground_truth_editor.png)
 
 ### Start Human Annotation clicking Annotate button
+### Since we imported corpus documents in step 4, we have already have annotation done for you. You can look at entities and relationships already annotated. You can annotate mentions (occurrences of words/phrases which can be annotated as entity) to play around or you can modify by annotating mention with different entity.
 <img src="doc/source/images/wks/task-8-annotation-ground_truth_editor.png" width="800" height="350" align="center">
 <img src="doc/source/images/wks/task-9-annotation-ground_truth_editor.png" width="800" height="350" align="center">
 <img src="doc/source/images/wks/task-10-annotation-ground_truth_editor.png" width="800" height="350" align="center">
@@ -124,17 +125,17 @@ If Apache Maven is being used, the following dependency should be included:
 <img src="doc/source/images/wks/task-14-annotation-submit_annotated_documents.png" width="800" height="350" align="center">
 <img src="doc/source/images/wks/task-15-annotation-documents_completed_status.png" width="800" height="350" align="center">
 <img src="doc/source/images/wks/task-16-annotation-green-status_completed.png" width="800" height="350" align="center">
-<img src="doc/source/images/wks/task-17-annotation-annotation_set_-submitted_status.png" width="800" height="350" align="center">
-<img src="doc/source/images/wks/task-18-annotation-annotation_set_-accept.png" width="800" height="350" align="center">
-<img src="doc/source/images/wks/task-19-annotation-annotation_set_-accept.png" width="800" height="350" align="center">
-<img src="doc/source/images/wks/task-20-annotation-annotation_set_-accept-status_completed.png" width="800" height="350" align="center">
+<img src="doc/source/images/wks/task-17-annotation-annotation_set_submitted_status.png" width="800" height="350" align="center">
+<img src="doc/source/images/wks/task-18-annotation-annotation_set_accept.png" width="800" height="350" align="center">
+<img src="doc/source/images/wks/task-19-annotation-annotation_set_accept.png" width="800" height="350" align="center">
+<img src="doc/source/images/wks/task-20-annotation-annotation_set_accept-status_completed.png" width="800" height="350" align="center">
 ![](doc/source/images/wks/task-14-annotation-submit_annotated_documents.png)
 ![](doc/source/images/wks/task-15-annotation-documents_completed_status.png)
 ![](doc/source/images/wks/task-16-annotation-green-status_completed.png)
-![](doc/source/images/wks/task-17-annotation-annotation_set_-submitted_status.png)
-![](doc/source/images/wks/task-18-annotation-annotation_set_-accept.png)
-![](doc/source/images/wks/task-19-annotation-annotation_set_-accept.png)
-![](doc/source/images/wks/task-20-annotation-annotation_set_-accept-status_completed.png)
+![](doc/source/images/wks/task-17-annotation-annotation_set_submitted_status.png)
+![](doc/source/images/wks/task-18-annotation-annotation_set_accept.png)
+![](doc/source/images/wks/task-19-annotation-annotation_set_accept.png)
+![](doc/source/images/wks/task-20-annotation-annotation_set_accept-status_completed.png)
 
 8. Create model, train and evaluate
 <img src="doc/source/images/wks/model_training_and_evaluation-1.png" width="800" height="350" align="center">
