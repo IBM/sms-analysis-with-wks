@@ -6,17 +6,15 @@
 ![Bluemix Deployments](https://deployment-tracker.mybluemix.net/stats/2beb5ac0f2b130c628328825c48f65c5/badge.svg)
 -->
 
-This code pattern describes how to analyze SMS messages with Watson Knowledge Studio and Waton's Natural Language Understanding capability to extract entities in the data.
-
-**Background**: Current natural language processing techniques cannot extract or interpret data that is domain or industry specific. The data (entities) represent different meaning in different domains. The best answer to such a problem is IBM's Watson Knowledge Studio.
-
-Consider a case where we need to extract entities present in a commercial SMS. For example:
+This code pattern describes how to analyze SMS messages with Watson Knowledge Studio (WKS) and Waton's Natural Language Understanding (NLU) capability to extract entities in the data. Current natural language processing techniques cannot extract or interpret data that is domain or industry specific. The data (entities) represent different meaning in different domains. The best answer to such a problem is IBM's Watson Knowledge Studio. Consider a case where we need to extract entities present in a commercial SMS. For example:
 
 ```
-PIZZA! Don't Cook Wednesdays are here! Get 50% off a Medium Pizza. Offer available for single Pizza in-store and two for Home Delivery. Walk-In/Call @ 555-555-5555
+PIZZA! Don't Cook Wednesdays are here! Get 50% off a Medium Pizza.
+Offer available for single Pizza in-store and two for Home Delivery.
+Walk-In/Call @ 555-555-5555
 ```
 
-The example above has a few interesting entities to be extracted, such as:
+The example above has a few interesting entities which could not be extracted with conventional NLP techniques, but by using Watson services we can find out the following:
 
 1. What is the offer?
 2. Who is the merchant?
@@ -25,7 +23,13 @@ The example above has a few interesting entities to be extracted, such as:
 5. What is the merchant's phone number?
 6. What is the merchant's website?
 
-Using cognitive SMS analysis, we can extract the above information from most SMS messages.
+After completing this code pattern, the user will learn how to:
+
+* Upload a corpus with WKS
+* Import types to WKS
+* Use WKS to create a model
+* Deploy a WKS model to NLU
+* Call NLU APIs with a WKS model specified
 
 ## Flow
 
@@ -132,7 +136,7 @@ Click on the task card to view the task details panel.
 
 ![](doc/source/images/wks/task-5-list_of_annotation_set_for_this_task.png)
 
-Clicke the **Annotate** button to start the **Human Annotation** task.
+Click the **Annotate** button to start the **Human Annotation** task.
 
 ![](doc/source/images/wks/task-6-list_of_documents_within_annotation_set_chosen.png)
 
@@ -160,7 +164,7 @@ From the **Task** details panel, press the **Submit All Documents** button.
 
 ![](doc/source/images/wks/task-14-annotation-submit_annotated_documents.png)
 
-All documents shoul change status to **Completed**.
+All documents should change status to **Completed**.
 
 ![](doc/source/images/wks/task-15-annotation-documents_completed_status.png)
 
@@ -210,55 +214,84 @@ Now we can deploy our new model to the already created **NLU** service.
 
 # Usage
 
-## Java Client
-You can run the simple java client provided in this project to extract the entities from SMS messages.
-
 ## cURL
-Alternatively you can use the curl commands.
 
-### NLU without a WKS model
-
-```
-curl -u "username":"password" "https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2017-02-27&text=DUNKI%20DONUTS%20is%20now%20open%20at%20Girgaum%20Chowpatty.%20Walk-in%20and%20enjoy%20the%20Valentaine%20SPL%20offer%20on%20your%20favorite%20Donuts.%20Buy%203%20%26%20Get%203%20FREE.%20Valid%20till%2015%20Feb%202017.%20T%26C&features=entities"
-
-Output:{ "language": "en", "entities": [ { "type": "Company", "text": "DUNKI DONUTS", "relevance": 0.976076, "count": 1 }, { "type": "GeographicFeature", "text": "Girgaum Chowpatty", "relevance": 0.65276, "count": 1 } ] }
-```
-
-The API is able to capture company (merchant) and location which are generic entities. It fails to extract the offer details as per our expectation.
+Using cURL is the quickest way to show the advantages of WKS. Let's see the result of using NLU with and without a WKS model.
 
 ### NLU with a WKS model
 
+The important change to made to a regular cURL call to NLU is to add an `entities.model` argument to the query string. In the example below we see (`entities.model=10:a5172791-b31b-4b0d-b546-3610ec652ca4`) added. It's clear in the server response that we can see domain specific entities like `Offer`, `Offer_Period`, and `Merchant`.
+
+To do this yourself, replace `username` and `password` with your own NLU credentials, and the WKS model ID, `entities.model` with your own WKS model ID. The SMS text is URL encoded as it is passed as a query argument. Note that the model used to train and evaluate entities is based on few sample SMS offers, which are available in the [data](data) folder.
+
 ```
-curl -u "username":"password" "https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2017-02-27&text=DUNKI%20DONUTS%20is%20now%20open%20at%20Girgaum%20Chowpatty.%20Walk-in%20and%20enjoy%20the%20Valentaine%20SPL%20offer%20on%20your%20favorite%20Donuts.%20Buy%203%20%26%20Get%203%20FREE.%20Valid%20till%2015%20Feb%202017.%20T%26C&features=entities&entities.model=10:a5172791-b31b-4b0d-b546-3610ec652ca4"
+curl -u "$username":"$password" \
+"https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2017-02-27&text=DUNKI%20DONUTS%20is%20now%20open%20at%20Girgaum%20Chowpatty.%20Walk-in%20and%20enjoy%20the%20Valentaine%20SPL%20offer%20on%20your%20favorite%20Donuts.%20Buy%203%20%26%20Get%203%20FREE.%20Valid%20till%2015%20Feb%202017.%20T%26C&features=entities&entities.model=10:a5172791-b31b-4b0d-b546-3610ec652ca4"
 
-Output:{ "language": "en", "entities": [ { "type": "Merchant", "text": "DUNKI DONUTS", "count": 1 }, { "type": "Location", "text": "Girgaum", "count": 1 }, { **"type": "Offer", "text": "Get 3 FREE", "count": 1 }, { "type": "Offer_Period", "text": "Valid till 15 Feb 2017", "count": 1 }, { "type": "Term_and_Conditions", "text": "T&C",** "count": 1 } ] }
+{
+    "language": "en",
+    "entities": [{
+        "type": "Merchant",
+        "text": "DUNKI DONUTS",
+        "count": 1
+    }, {
+        "type": "Location",
+        "text": "Girgaum",
+        "count": 1
+    }, {
+        "type": "Offer",
+        "text": "Get 3 FREE",
+        "count": 1
+    }, {
+        "type": "Offer_Period",
+        "text": "Valid till 15 Feb 2017",
+        "count": 1
+    }, {
+        "type": "Term_and_Conditions",
+        "text": "T&C",
+        "count": 1
+    }]
+}
 ```
 
-### Differences
+### NLU without a WKS model
 
-If we look the entities extracted in the form of JSON, we get domain specific entities like `offer`, `offer period`, `merchant`. The model I used is trained and evaluated based on few sample sms. The sample sms are available under data folder.
+Using NLU without a WKS is less ideal. The server does not extract the entities we are looking for, it extracts the company and some location details, both of which are generic, it does not extract the offer details we desiree.
 
-Once the WKS model is built and the NLU service you can replace username/password highlighted with your NLU service credentials. Replace WKS model id (entities.model) with your WKS model id. The SMS text has to be URL encoded as it is passed as URL query string in curl command.
+```
+curl -u "$username":"$password" \
+"https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2017-02-27&text=DUNKI%20DONUTS%20is%20now%20open%20at%20Girgaum%20Chowpatty.%20Walk-in%20and%20enjoy%20the%20Valentaine%20SPL%20offer%20on%20your%20favorite%20Donuts.%20Buy%203%20%26%20Get%203%20FREE.%20Valid%20till%2015%20Feb%202017.%20T%26C&features=entities"
 
-## Run JUnits using maven command
+{
+    "language": "en",
+    "entities": [{
+        "type": "Company",
+        "text": "DUNKI DONUTS",
+        "relevance": 0.976076,
+        "count": 1
+    }, {
+        "type": "GeographicFeature",
+        "text": "Girgaum Chowpatty",
+        "relevance": 0.65276,
+        "count": 1
+    }]
+}
+```
 
-* Download Maven : https://maven.apache.org/download.cgi
+## Java Client
 
-* Install Maven: https://maven.apache.org/install.html
+You can run the simple java client provided in this project to extract the entities from SMS messages.
 
-Configure maven: Open `.bash_profile` if exists, else create new `.bash_profile` file. Make below entries into .bash_profile file.
+## Testing
+
+JUnit tests are run using [maven](https://maven.apache.org/download.cgi). To configure maven, open `.bash_profile` if it exists (create a new `.bash_profile` otherwise), and add the entry below:
 
 ```
 JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_40.jdk/Contents/Home
-
 export JAVA_HOME
-
 M2_HOME=/usr/local/apache-maven/apache-maven-3.1.1
-
 export M2_HOME
-
 PATH=$PATH:$JAVA_HOME/bin:$M2_HOME/bin
-
 export PATH
 ```
 
@@ -277,7 +310,7 @@ If Apache Maven is being used, the following dependency should be included:
 </dependency>
 ```
 
-Now from terminal run below command
+From a terminal run the command below from the root directory of the repository:
 
 ```
 mvn test
