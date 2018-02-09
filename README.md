@@ -1,6 +1,6 @@
 # Analyzing SMS messages with Watson Knowledge Studio
 
-![Build Status](https://travis-ci.org/IBM/wks-nlu-SMS-analysis.svg?branch=master)
+![Build Status](https://travis-ci.org/IBM/sms-analysis-with-wks.svg?branch=master)
 
 <!--
 ![Bluemix Deployments](https://deployment-tracker.mybluemix.net/stats/2beb5ac0f2b130c628328825c48f65c5/badge.svg)
