@@ -55,9 +55,9 @@ TBD!
 
 # Steps
 
-1. [Create an NLU service](#1-create-an-nlu-service)
-2. [Create a WKS service](#2-create-a-wks-service)
-3. [Create a WKS workspace](#3-create-a-wks-workspace)
+1. [Clone the repo](#1-clone-the-repo)
+2. [Create IBM Cloud services](#2-create-ibm-cloud-services)
+3. [Create a Watson Knowledge Studio workspace](#3-create-a-watson-knowledge-studio-workspace)
 4. [Upload Type System](#4-upload-type-system)
 5. [Import Corpus Documents](#5-import-corpus-documents)
 6. [Create an Annotation Set](#6-create-an-annotation-set)
@@ -65,105 +65,147 @@ TBD!
 8. [Create the model](#8-create-the-model)
 9. [Deploy the machine learning model to NLU](#9-deploy-the-machine-learning-model-to-nlu)
 
-## 1. Create an NLU service
+## 1. Clone the repo
 
-* Create an NLU service by going to the [NLU service](https://console.bluemix.net/catalog/services/natural-language-understanding) page.
+```
+$ git clone https://github.com/IBM/sms-analysis-with-wks
+```
 
-![](doc/source/images/nlu/create_nlu_service-1.png)
-![](doc/source/images/nlu/create_nlu_service-2.png)
-![](doc/source/images/nlu/create_nlu_service-3.png)
-![](doc/source/images/nlu/create_nlu_service-4.png)
-![](doc/source/images/nlu/create_nlu_service-5.png)
+## 2. Create IBM Cloud services
 
-## 2. Create a WKS service
+Create the following services:
 
-* Create a WKS service by going to the [WKS service](https://console.bluemix.net/catalog/services/knowledge-studio) page.
+* [**Watson Natural Language Understanding**](https://console.bluemix.net/catalog/services/natural-language-understanding)
+* [**Watson Knowledge Studio**](https://console.bluemix.net/catalog/services/knowledge-studio)
 
-![](doc/source/images/wks/dashboard.png)
-![](doc/source/images/wks/creating_knowledge_studio_service-1.png)
-![](doc/source/images/wks/creating_knowledge_studio_service-2.png)
+## 3. Create a Watson Knowledge Studio workspace
 
-## 3. Create a WKS workspace
+Launch the **WKS** tool and create a new **workspace**.
 
-* Create a new empty workspace where our model will be created.
-
-![](doc/source/images/wks/knowledge_studio_launch_page.png)
-![](doc/source/images/wks/workspace_page.png)
 ![](doc/source/images/wks/create_new_workspace.png)
-![](doc/source/images/wks/workspace_creation_done.png)
 
 ## 4. Upload Type System
 
-* Use the file located at: [wks-resources/types-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.json](wks-resources/types-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.json)
+From the **Access & Tools -> Entity Types** panel, press the **Upload** button to import a **Type System** file. Use the file [wks-resources/types-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.json](wks-resources/types-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.json) found in the local repository.
 
 ![](doc/source/images/wks/type_system-4_upload_type_system_entry.png)
+
+This will download a set of **Entity Types** and **Relation Types**.
+
 ![](doc/source/images/wks/type_system-5_entries.png)
+
 ![](doc/source/images/wks/type_system-6_create_relation_entry.png)
-![](doc/source/images/wks/type_system-7_relation_entries.png)
 
 ## 5. Import Corpus Documents
 
-* Use the file located at[wks-resources/corpus-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.zip](wks-resources/corpus-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.zip)
+From the **Access & Tools -> Documents** panel, press the **Upload Document Sets** button to import a **Document Set** file. Use the corpus documents file [wks-resources/corpus-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.zip](wks-resources/corpus-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.zip) found in the local repository.
 
-> It is not necessary to use the corpus documents, however for beginners we recommend to use the corpus documents provided.
+> NOTE: It is not necessary to use the provided corpus documents, but is recommended for beginners.
 
-![](doc/source/images/wks/documents-2-upload_corpus_documents.png)
 ![](doc/source/images/wks/documents-3-upload_corpus_documents.png)
+
 ![](doc/source/images/wks/documents-4-upload_corpus_documents.png)
 
 ## 6. Create an Annotation Set
 
+From the **Access & Tools -> Documents** panel, press the **Create Annotion Sets** button. Select a valid **Annotator** user, and provide a unique name for **Set name**. 
+
 ![](doc/source/images/wks/documents-9-create_annotation_set.png)
+
 ![](doc/source/images/wks/documents-10-create_annotation_set.png)
 
 ## 7. Create a Task for Human Annotation
 
-![](doc/source/images/wks/task-1-page.png)
+From the **Access & Tools -> Documents** panel, select the **Task** tab and press the **Add Task** button. 
+
 ![](doc/source/images/wks/task-2-create_task.png)
 
 ### 7.1 Select Annotation Set for this task
 
+Select the **Annotation Set** you created in the previous step, and press the **Create Task** button.
+
 ![](doc/source/images/wks/task-3-create_task-select_annotation_set.png)
+
 ![](doc/source/images/wks/task-4-task_created.png)
+
+Click on the task card to view the task details panel.
+
 ![](doc/source/images/wks/task-5-list_of_annotation_set_for_this_task.png)
+
+Clicke the **Annotate** button to start the **Human Annotation** task.
+
 ![](doc/source/images/wks/task-6-list_of_documents_within_annotation_set_chosen.png)
+
+Click on any of the documents to view the SMS message. Click on the file icon in the top left corner to return to the document list. The example below shows as SMS message that has not been annotated.
+
 ![](doc/source/images/wks/task-7-start_annotation-ground_truth_editor.png)
 
-Start the Human Annotation by clicking the `Annotate` button.  Since we previously imported the corpus documents already have the annotations completed. You can look at entities and relationships already annotated. You can annotate mentions (occurrences of words/phrases which can be annotated as entity) to play around or you can modify by annotating mention with different entity.
+Since we previously imported the corpus documents, the entity and relationship annotations are already completed and can be seen in the following examples. You can annotate mentions (occurrences of words/phrases which can be annotated as an entity) to play around, or you can modify one by annotating mentions with a different entity.
 
 ![](doc/source/images/wks/task-8-annotation-ground_truth_editor.png)
+
 ![](doc/source/images/wks/task-9-annotation-ground_truth_editor.png)
+
 ![](doc/source/images/wks/task-10-annotation-ground_truth_editor.png)
+
 ![](doc/source/images/wks/task-11-annotation-ground_truth_editor.png)
+
 ![](doc/source/images/wks/task-12-annotation-documents_status.png)
+
 ![](doc/source/images/wks/task-13-annotation-documents_status.png)
 
 ## 7.2 Submit Annotation Set
 
+From the **Task** details panel, press the **Submit All Documents** button.
+
 ![](doc/source/images/wks/task-14-annotation-submit_annotated_documents.png)
+
+All documents shoul change status to **Completed**.
+
 ![](doc/source/images/wks/task-15-annotation-documents_completed_status.png)
+
+The **Task** panel will show that the percentage of completion for the task.
+
 ![](doc/source/images/wks/task-16-annotation-green-status_completed.png)
+
+From the **Access & Tools -> Documents** panel, select the **Task** tab and select the task to view the details panel.
+
 ![](doc/source/images/wks/task-17-annotation-annotation_set_submitted_status.png)
+
+Select the **Annotation Set Name** and then press the **Accept** button.
+
 ![](doc/source/images/wks/task-18-annotation-annotation_set_accept.png)
-![](doc/source/images/wks/task-19-annotation-annotation_set_accept.png)
+
 ![](doc/source/images/wks/task-20-annotation-annotation_set_accept-status_completed.png)
 
 ## 8. Create the model
 
+From the **Model Management -> Performance** panel, select the **Train and evaluate** button.
+
 ![](doc/source/images/wks/model_training_and_evaluation-1.png)
+
+Select **All** and press the **Train & Evaluate** button. This may take several minutes.
+
 ![](doc/source/images/wks/model_training_and_evaluation-2.png)
-![](doc/source/images/wks/model_training_and_evaluation-4-training_in_progress.png)
+
 ![](doc/source/images/wks/model_training_and_evaluation-5-training_and_evaluation_completed.png)
+
+Once complete, you can view log files of the process by clicking the **View Log** button.
+
 ![](doc/source/images/wks/model_training_and_evaluation-6-logs.png)
+
 ![](doc/source/images/wks/model_training_and_evaluation-7-multiple_training_and_evaluation_completed.png)
 
 ## 9. Deploy the machine learning model to NLU
 
-* Finally deploy our new model to the already created NLU service.
+Now we can deploy our new model to the already created **NLU** service.
 
 ![](doc/source/images/wks/model_deployment-1.png)
+
 ![](doc/source/images/wks/model_deployment-2.png)
+
 ![](doc/source/images/wks/model_deployment-3.png)
+
 ![](doc/source/images/wks/model_deployment-4.png)
 
 # Usage
@@ -174,7 +216,7 @@ You can run the simple java client provided in this project to extract the entit
 ## cURL
 Alternatively you can use the curl commands.
 
-### NLU without WKS model
+### NLU without a WKS model
 
 ```
 curl -u "username":"password" "https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2017-02-27&text=DUNKI%20DONUTS%20is%20now%20open%20at%20Girgaum%20Chowpatty.%20Walk-in%20and%20enjoy%20the%20Valentaine%20SPL%20offer%20on%20your%20favorite%20Donuts.%20Buy%203%20%26%20Get%203%20FREE.%20Valid%20till%2015%20Feb%202017.%20T%26C&features=entities"
@@ -184,7 +226,7 @@ Output:{ "language": "en", "entities": [ { "type": "Company", "text": "DUNKI DON
 
 The API is able to capture company (merchant) and location which are generic entities. It fails to extract the offer details as per our expectation.
 
-### NLU with WKS model
+### NLU with a WKS model
 
 ```
 curl -u "username":"password" "https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2017-02-27&text=DUNKI%20DONUTS%20is%20now%20open%20at%20Girgaum%20Chowpatty.%20Walk-in%20and%20enjoy%20the%20Valentaine%20SPL%20offer%20on%20your%20favorite%20Donuts.%20Buy%203%20%26%20Get%203%20FREE.%20Valid%20till%2015%20Feb%202017.%20T%26C&features=entities&entities.model=10:a5172791-b31b-4b0d-b546-3610ec652ca4"
