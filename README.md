@@ -112,7 +112,7 @@ From the **Access & Tools -> Documents** panel, press the **Upload Document Sets
 
 ## 6. Create an Annotation Set
 
-From the **Access & Tools -> Documents** panel, press the **Create Annotion Sets** button. Select a valid **Annotator** user, and provide a unique name for **Set name**. 
+From the **Access & Tools -> Documents** panel, press the **Create Annotion Sets** button. Select a valid **Annotator** user, and provide a unique name for **Set name**.
 
 ![](doc/source/images/wks/documents-9-create_annotation_set.png)
 
@@ -120,7 +120,7 @@ From the **Access & Tools -> Documents** panel, press the **Create Annotion Sets
 
 ## 7. Create a Task for Human Annotation
 
-From the **Access & Tools -> Documents** panel, select the **Task** tab and press the **Add Task** button. 
+From the **Access & Tools -> Documents** panel, select the **Task** tab and press the **Add Task** button.
 
 ![](doc/source/images/wks/task-2-create_task.png)
 
@@ -139,10 +139,6 @@ Click on the task card to view the task details panel.
 Click the **Annotate** button to start the **Human Annotation** task.
 
 ![](doc/source/images/wks/task-6-list_of_documents_within_annotation_set_chosen.png)
-
-Click on any of the documents to view the SMS message. Click on the file icon in the top left corner to return to the document list. The example below shows as SMS message that has not been annotated.
-
-![](doc/source/images/wks/task-7-start_annotation-ground_truth_editor.png)
 
 Since we previously imported the corpus documents, the entity and relationship annotations are already completed and can be seen in the following examples. You can annotate mentions (occurrences of words/phrases which can be annotated as an entity) to play around, or you can modify one by annotating mentions with a different entity.
 
@@ -188,21 +184,24 @@ From the **Model Management -> Performance** panel, select the **Train and evalu
 
 ![](doc/source/images/wks/model_training_and_evaluation-1.png)
 
-Select **All** and press the **Train & Evaluate** button. This may take several minutes.
+Select **FirstSmsAnnotationSet** and press the **Train** button. This may take several minutes.
 
 ![](doc/source/images/wks/model_training_and_evaluation-2.png)
 
-![](doc/source/images/wks/model_training_and_evaluation-5-training_and_evaluation_completed.png)
+![](doc/source/images/wks/model_training_and_evaluation-5-training_completed.png)
+
+Select msg_1, msg_2 and msg_3 and press **Evaluate** button. This may take several minutes. In practice you can create separate annotation set for training and evaluation.
+![](model_training_and_evaluation-6-chose_evaluation_set.png)
+![](model_training_and_evaluation-7-evaluation_completed.png)
 
 Once complete, you can view log files of the process by clicking the **View Log** button.
 
-![](doc/source/images/wks/model_training_and_evaluation-6-logs.png)
-
-![](doc/source/images/wks/model_training_and_evaluation-7-multiple_training_and_evaluation_completed.png)
+![](doc/source/images/wks/model_training_and_evaluation-8-logs.png)
 
 ## 9. Deploy the machine learning model to NLU
 
 Now we can deploy our new model to the already created **NLU** service.
+Navigate to Version menu on left and press **Take Snapshot**.
 
 ![](doc/source/images/wks/model_deployment-1.png)
 
@@ -211,6 +210,9 @@ Now we can deploy our new model to the already created **NLU** service.
 ![](doc/source/images/wks/model_deployment-3.png)
 
 ![](doc/source/images/wks/model_deployment-4.png)
+
+Keep note of this model id. Later you can also get this model id by pressing **NLU** link.
+![](doc/source/images/wks/model_deployment-5.png)
 
 # Usage
 
