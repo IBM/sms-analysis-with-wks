@@ -191,8 +191,8 @@ Select **FirstSmsAnnotationSet** and press the **Train** button. This may take s
 ![](doc/source/images/wks/model_training_and_evaluation-5-training_completed.png)
 
 Select msg_1, msg_2 and msg_3 and press **Evaluate** button. This may take several minutes. In practice you can create separate annotation set for training and evaluation.
-![](model_training_and_evaluation-6-chose_evaluation_set.png)
-![](model_training_and_evaluation-7-evaluation_completed.png)
+![](doc/source/images/wks/model_training_and_evaluation-6-chose_evaluation_set.png)
+![](doc/source/images/wks/model_training_and_evaluation-7-evaluation_completed.png)
 
 Once complete, you can view log files of the process by clicking the **View Log** button.
 
