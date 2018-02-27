@@ -106,7 +106,11 @@ This will upload a set of **Entity Types** and **Relation Types**.
 
 Corpus documents are required to train our machine-learning annotator component. For this Code Pattern, the corpus documents will contain example SMS messages.
 
+> NOTE: To view the individual SMS messages in easy-to-read format, view the file [data/offers_msg.csv](data/offers_msg.csv) found in the local repository. 
+
 From the **Access & Tools -> Documents** panel, press the **Upload Document Sets** button to import a **Document Set** file. Use the corpus documents file [wks-resources/corpus-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.zip](wks-resources/corpus-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.zip) found in the local repository.
+
+> NOTE: Uploading the corpus documents provided in this Code Pattern is not required, but recommended to simplify the annotation process (all provided documents will come pre-annotated). An alternative approach would be to is to upload standard text files and perform the annotations manually. 
 
 > NOTE: Select the option to "upload the original workspace's type system first".
 
@@ -116,9 +120,9 @@ From the **Access & Tools -> Documents** panel, press the **Upload Document Sets
 
 ## 6. Create an Annotation Set
 
-Once the corpus documents are loaded, we can start the human annotation process. This begins by dividing the corpus into multiple document sets and assigning the document sets to human annotators (for this Code Pattern, we will just be using using one document set and one annotator).
+Once the corpus documents are loaded, we can start the human annotation process. This begins by dividing the corpus into multiple document sets and assigning the document sets to human annotators (for this Code Pattern, we will just be using one document set and one annotator).
 
-From the **Access & Tools -> Documents** panel, press the **Create Annotion Sets** button. Select a valid **Annotator** user, and provide a unique name for **Set name**.
+From the **Access & Tools -> Documents** panel, press the **Create Annotion Sets** button. Select a valid **Annotator** user, and provide a unique **Set name**.
 
 ![](doc/source/images/wks/documents-9-create_annotation_set.png)
 
@@ -126,7 +130,7 @@ From the **Access & Tools -> Documents** panel, press the **Create Annotion Sets
 
 ## 7. Create a Task for Human Annotation
 
-Then we add a task for human annotation by creating a task and assigning it annotation sets.
+Add a task for human annotation by creating a task and assigning it annotation sets.
 
 From the **Access & Tools -> Documents** panel, select the **Task** tab and press the **Add Task** button.
 
@@ -156,14 +160,6 @@ If you select any of the documents in the list, the **Document Annotation** pane
 
 ![](doc/source/images/wks/task-9-annotation-ground_truth_editor.png)
 
-![](doc/source/images/wks/task-10-annotation-ground_truth_editor.png)
-
-![](doc/source/images/wks/task-11-annotation-ground_truth_editor.png)
-
-![](doc/source/images/wks/task-12-annotation-documents_status.png)
-
-![](doc/source/images/wks/task-13-annotation-documents_status.png)
-
 ## 7.2 Submit Annotation Set
 
 From the **Task** details panel, press the **Submit All Documents** button.
@@ -174,7 +170,7 @@ All documents should change status to **Completed**.
 
 ![](doc/source/images/wks/task-15-annotation-documents_completed_status.png)
 
-The **Task** panel will show the percentage of completion for the task.
+Press the blue "File" icon to toggle back to the **Task** panel, which will show the completion percentage for each task.
 
 ![](doc/source/images/wks/task-16-annotation-green-status_completed.png)
 
@@ -182,7 +178,9 @@ From the **Access & Tools -> Documents** panel, select the **Task** tab and sele
 
 ![](doc/source/images/wks/task-17-annotation-annotation_set_submitted_status.png)
 
-Select the **Annotation Set Name** and then press the **Accept** button.
+Select your **Annotation Set Name** and then press the **Accept** button. This step is required to ensure that the annotation set is considered **ground truth**.
+
+> NOTE: The objective of the annotation project is to obtain ground truth, the collection of vetted data that is used to adapt WKS to a particular domain.
 
 ![](doc/source/images/wks/task-18-annotation-annotation_set_accept.png)
 
@@ -192,7 +190,7 @@ Select the **Annotation Set Name** and then press the **Accept** button.
 
 ## 8. Create the model
 
-Go to the **Model Management -> Performance** panel, and select the **Train and evaluate** button.
+Go to the **Model Management -> Performance** panel, and press the **Train and evaluate** button.
 
 ![](doc/source/images/wks/model_training_and_evaluation-1.png)
 
@@ -206,7 +204,7 @@ This process may take several minutes to complete. Progress will be shown in the
 
 Once complete, return to the **Model Management -> Performance** panel and select the **Train and evaluate** button again.
 
-From this panel, select the **Edit Settings" button to view the **Document Set** name list again.
+From this panel, select the **Edit Settings** button to view the **Document Set** list again.
 
 This time, select the document sets for msg_1, msg_2 and msg_3, and then press the **Evaluate** button. This process may take several minutes to complete.
 
@@ -224,19 +222,29 @@ You can view the log files of the process by clicking the **View Log** button.
 
 ## 9. Deploy the machine learning model to NLU
 
-Now we can deploy our new model to the already created **NLU** service.
-Navigate to Version menu on left and press **Take Snapshot**.
+Now we can deploy our new model to the already created **NLU** service. Navigate to the **Version** menu on the left and press **Take Snapshot**.
 
 ![](doc/source/images/wks/model_deployment-1.png)
 
+The snapshot version will now be available for deployment to NLU.
+
 ![](doc/source/images/wks/model_deployment-2.png)
+
+To start the process, click the **Deploy** button associated with your snapshot version.
+
+Select the option to deploy to **Natural Language Understanding**.
 
 ![](doc/source/images/wks/model_deployment-3.png)
 
+Then enter your IBM Cloud account information to locate your **NLU** service to deploy to.
+
 ![](doc/source/images/wks/model_deployment-4.png)
 
-Keep note of this model id. Later you can also get this model id by pressing **NLU** link.
+Once deployed, a **Model ID** will be created. Keep note of this value as it will be required later in this Code Pattern. 
+
 ![](doc/source/images/wks/model_deployment-5.png)
+
+> NOTE: You can also view this **Model ID** by pressing the **NLU** botton listed with your snapshot version.
 
 # Usage
 
@@ -246,9 +254,11 @@ Using cURL is the quickest way to show the advantages of WKS. Let's see the resu
 
 ### NLU with a WKS model
 
-The important change to made to a regular cURL call to NLU is to add an `entities.model` argument to the query string. In the example below we see (`entities.model=10:a5172791-b31b-4b0d-b546-3610ec652ca4`) added. It's clear in the server response that we can see domain specific entities like `Offer`, `Offer_Period`, and `Merchant`.
+In the following examples, replace `username` and `password` with your own **NLU** credentials. In this first example, we will also be adding an `entites.model` argument to the query string. Replace this value with your own **WKS** model ID. 
 
-To do this yourself, replace `username` and `password` with your own NLU credentials, and the WKS model ID, `entities.model` with your own WKS model ID. The SMS text is URL encoded as it is passed as a query argument. Note that the model used to train and evaluate entities is based on few sample SMS offers, which are available in the [data](data) folder.
+The SMS text is URL encoded as it is passed as a query argument. Note that the model used to train and evaluate entities is based on a few sample SMS offers, which can be viewed in the [data/offers_msg.csv](data/offers_msg.csv) file.
+
+After issuing this cURL command, it is clear in the server response that we can see domain specific entities like `Offer`, `Offer_Period`, and `Merchant`.
 
 ```
 curl -u "$username":"$password" \
@@ -282,7 +292,7 @@ curl -u "$username":"$password" \
 
 ### NLU without a WKS model
 
-Using NLU without a WKS is less ideal. The server does not extract the entities we are looking for, it extracts the company and some location details, both of which are generic, it does not extract the offer details we desiree.
+Using **NLU** without a **WKS** model ID is less ideal, as the server does not extract the entities we are looking for. It extracts generic data such as company name and some location details, but it does not extract the domain specific offer details we desire.
 
 ```
 curl -u "$username":"$password" \
