@@ -6,7 +6,7 @@
 ![Bluemix Deployments](https://deployment-tracker.mybluemix.net/stats/2beb5ac0f2b130c628328825c48f65c5/badge.svg)
 -->
 
-This code pattern describes how to analyze SMS messages with Watson Knowledge Studio (WKS) and Waton's Natural Language Understanding (NLU) capability to extract entities in the data. Current natural language processing techniques cannot extract or interpret data that is domain or industry specific. The data (entities) represent different meaning in different domains. The best answer to such a problem is IBM's Watson Knowledge Studio. Consider a case where we need to extract entities present in a commercial SMS. For example:
+This code pattern describes how to analyze SMS messages with Watson Knowledge Studio (WKS) and Watson's Natural Language Understanding (NLU) capability to extract entities in the data. Current natural language processing techniques cannot extract or interpret data that is domain or industry specific. The data (entities) represent different meaning in different domains. The best answer to such a problem is IBM's Watson Knowledge Studio. Consider a case where we need to extract entities present in a commercial SMS. For example:
 
 ```
 PIZZA! Don't Cook Wednesdays are here! Get 50% off a Medium Pizza.
@@ -120,9 +120,9 @@ From the **Access & Tools -> Documents** panel, press the **Upload Document Sets
 
 ## 6. Create an Annotation Set
 
-Once the corpus documents are loaded, we can start the human annotation process. This begins by dividing the corpus into multiple document sets and assigning the document sets to human annotators (for this Code Pattern, we will just be using one document set and one annotator).
+Once the corpus documents are loaded, we can start the human annotation process. This begins by dividing the corpus into multiple document sets and assigning the document sets to human annotators (for this Code Pattern, we will just be using using one document set and one annotator).
 
-From the **Access & Tools -> Documents** panel, press the **Create Annotion Sets** button. Select a valid **Annotator** user, and provide a unique **Set name**.
+From the **Access & Tools -> Documents** panel, press the **Create Annotation Sets** button. Select a valid **Annotator** user, and provide a unique name for **Set name**.
 
 ![](doc/source/images/wks/documents-9-create_annotation_set.png)
 
