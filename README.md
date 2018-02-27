@@ -35,9 +35,9 @@ After completing this code pattern, the user will learn how to:
 
 ![](doc/source/images/wks-nlu-process.png)
 
-1. The user provides an SMS message to be analyzed to a client.
-2. The client sends the SMS to analzyed to Watson NLU, specifying which machine learning model to use in WKS.
-3. Watson NLU extracts the domain specific entities and returns these results to the client.
+1. The user provides the client with an SMS message to be analyzed.
+2. The client sends the SMS to Watson NLU for analysis, specifying which machine learning WKS model to use.
+3. Watson NLU extracts the domain specific entities and returns the results to the client.
 4. The client renders the results to the user.
 
 ## Technical Architecture
@@ -90,11 +90,13 @@ Launch the **WKS** tool and create a new **workspace**.
 
 ## 4. Upload Type System
 
-From the **Access & Tools -> Entity Types** panel, press the **Upload** button to import a **Type System** file. Use the file [wks-resources/types-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.json](wks-resources/types-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.json) found in the local repository.
+A type system allows us to define things that are specific to our SMS messages. The type system controls how content can be annotated by defining the types of entities that can be labeled and how relationships among different entities can be labeled.
+
+To upload our pre-defined type system, from the **Access & Tools -> Entity Types** panel, press the **Upload** button to import the **Type System** file  [wks-resources/types-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.json](wks-resources/types-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.json) found in the local repository.
 
 ![](doc/source/images/wks/type_system-4_upload_type_system_entry.png)
 
-This will download a set of **Entity Types** and **Relation Types**.
+This will upload a set of **Entity Types** and **Relation Types**.
 
 ![](doc/source/images/wks/type_system-5_entries.png)
 
@@ -102,15 +104,19 @@ This will download a set of **Entity Types** and **Relation Types**.
 
 ## 5. Import Corpus Documents
 
+Corpus documents are required to train our machine-learning annotator component. For this Code Pattern, the corpus documents will contain example SMS messages.
+
 From the **Access & Tools -> Documents** panel, press the **Upload Document Sets** button to import a **Document Set** file. Use the corpus documents file [wks-resources/corpus-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.zip](wks-resources/corpus-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.zip) found in the local repository.
 
-> NOTE: It is not necessary to use the provided corpus documents, but is recommended for beginners.
+> NOTE: Select the option to "upload the original workspace's type system first".
 
 ![](doc/source/images/wks/documents-3-upload_corpus_documents.png)
 
 ![](doc/source/images/wks/documents-4-upload_corpus_documents.png)
 
 ## 6. Create an Annotation Set
+
+Once the corpus documents are loaded, we can start the human annotation process. This begins by dividing the corpus into multiple document sets and assigning the document sets to human annotators (for this Code Pattern, we will just be using using one document set and one annotator).
 
 From the **Access & Tools -> Documents** panel, press the **Create Annotion Sets** button. Select a valid **Annotator** user, and provide a unique name for **Set name**.
 
@@ -120,17 +126,21 @@ From the **Access & Tools -> Documents** panel, press the **Create Annotion Sets
 
 ## 7. Create a Task for Human Annotation
 
+Then we add a task for human annotation by creating a task and assigning it annotation sets.
+
 From the **Access & Tools -> Documents** panel, select the **Task** tab and press the **Add Task** button.
 
 ![](doc/source/images/wks/task-2-create_task.png)
 
-### 7.1 Select Annotation Set for this task
+Enter a unique **Task name** and press the **Create** button.
 
-Select the **Annotation Set** you created in the previous step, and press the **Create Task** button.
+A panel will then be displayed of the available annotation sets that can be assigned to this task. Select the **Annotation Set** you created in the previous step, and press the **Create Task** button.
 
 ![](doc/source/images/wks/task-3-create_task-select_annotation_set.png)
 
 ![](doc/source/images/wks/task-4-task_created.png)
+
+## 7.1 Start the Human Annotation task
 
 Click on the task card to view the task details panel.
 
@@ -140,7 +150,7 @@ Click the **Annotate** button to start the **Human Annotation** task.
 
 ![](doc/source/images/wks/task-6-list_of_documents_within_annotation_set_chosen.png)
 
-Since we previously imported the corpus documents, the entity and relationship annotations are already completed and can be seen in the following examples. You can annotate mentions (occurrences of words/phrases which can be annotated as an entity) to play around, or you can modify one by annotating mentions with a different entity.
+If you select any of the documents in the list, the **Document Annotation** panel will be displayed. Since we previously imported the corpus documents, the entity and relationship annotations are already completed (as shown in the following examples). You can annotate mentions (occurrences of words/phrases which can be annotated as an entity) to play around, or you can modify one by annotating mentions with a different entity.
 
 ![](doc/source/images/wks/task-8-annotation-ground_truth_editor.png)
 
@@ -164,7 +174,7 @@ All documents should change status to **Completed**.
 
 ![](doc/source/images/wks/task-15-annotation-documents_completed_status.png)
 
-The **Task** panel will show that the percentage of completion for the task.
+The **Task** panel will show the percentage of completion for the task.
 
 ![](doc/source/images/wks/task-16-annotation-green-status_completed.png)
 
@@ -176,25 +186,39 @@ Select the **Annotation Set Name** and then press the **Accept** button.
 
 ![](doc/source/images/wks/task-18-annotation-annotation_set_accept.png)
 
+**Status** should now be set to **COMPLETED**.
+
 ![](doc/source/images/wks/task-20-annotation-annotation_set_accept-status_completed.png)
 
 ## 8. Create the model
 
-From the **Model Management -> Performance** panel, select the **Train and evaluate** button.
+Go to the **Model Management -> Performance** panel, and select the **Train and evaluate** button.
 
 ![](doc/source/images/wks/model_training_and_evaluation-1.png)
 
-Select **FirstSmsAnnotationSet** and press the **Train** button. This may take several minutes.
+From the **Document Set** name list, select the **Annotation Set Name** you created previously and press the **Train** button.
 
 ![](doc/source/images/wks/model_training_and_evaluation-2.png)
 
+This process may take several minutes to complete. Progress will be shown in the upper right corner of the panel.
+
 ![](doc/source/images/wks/model_training_and_evaluation-5-training_completed.png)
 
-Select msg_1, msg_2 and msg_3 and press **Evaluate** button. This may take several minutes. In practice you can create separate annotation set for training and evaluation.
+Once complete, return to the **Model Management -> Performance** panel and select the **Train and evaluate** button again.
+
+From this panel, select the **Edit Settings" button to view the **Document Set** name list again.
+
+This time, select the document sets for msg_1, msg_2 and msg_3, and then press the **Evaluate** button. This process may take several minutes to complete.
+
+> Note: In practice, you can create separate annotation sets for training and evaluation.
+
 ![](doc/source/images/wks/model_training_and_evaluation-6-chose_evaluation_set.png)
+
+Once complete, you will see the results of the test and evaluate process.
+
 ![](doc/source/images/wks/model_training_and_evaluation-7-evaluation_completed.png)
 
-Once complete, you can view log files of the process by clicking the **View Log** button.
+You can view the log files of the process by clicking the **View Log** button.
 
 ![](doc/source/images/wks/model_training_and_evaluation-8-logs.png)
 
