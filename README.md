@@ -59,6 +59,24 @@ TBD!
 
 # Steps
 
+Use the ``Deploy to IBM Cloud`` button **OR** create the services and run locally.
+
+## Deploy to IBM Cloud
+
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/sms-analysis-with-wks)
+
+1. Press the abovve ``Deploy to IBM Cloud`` button and then click on ``Deploy``.
+
+2. In Toolchains, click on Delivery Pipeline to watch while the app is deployed. Once deployed, the app can be viewed by clicking 'View app'.
+
+![](doc/source/images/toolchain-pipeline.png)
+
+3. To see the app and services created and configured for this journey, use the IBM Cloud dashboard. The app is named `sms-analysis-with-wks` with a unique suffix. The following service is created:
+    * sms-nlu-service
+
+## Run locally
+> NOTE: These steps are only needed when running locally instead of using the ``Deploy to IBM Cloud`` button.
+
 1. [Clone the repo](#1-clone-the-repo)
 2. [Create IBM Cloud services](#2-create-ibm-cloud-services)
 3. [Create a Watson Knowledge Studio workspace](#3-create-a-watson-knowledge-studio-workspace)
@@ -68,27 +86,29 @@ TBD!
 7. [Create a Task for Human Annotation](#7-create-a-task-for-human-annotation)
 8. [Create the model](#8-create-the-model)
 9. [Deploy the machine learning model to NLU](#9-deploy-the-machine-learning-model-to-nlu)
+10. [Test the model with cURL](#10-test-the-model-with-curl)
+11. [Run the application](#11-run-the-application)
 
-## 1. Clone the repo
+### 1. Clone the repo
 
 ```
 $ git clone https://github.com/IBM/sms-analysis-with-wks
 ```
 
-## 2. Create IBM Cloud services
+### 2. Create IBM Cloud services
 
 Create the following services:
 
 * [**Watson Natural Language Understanding**](https://console.bluemix.net/catalog/services/natural-language-understanding)
 * [**Watson Knowledge Studio**](https://console.bluemix.net/catalog/services/knowledge-studio)
 
-## 3. Create a Watson Knowledge Studio workspace
+### 3. Create a Watson Knowledge Studio workspace
 
 Launch the **WKS** tool and create a new **workspace**.
 
 ![](doc/source/images/wks/create_new_workspace.png)
 
-## 4. Upload Type System
+### 4. Upload Type System
 
 A type system allows us to define things that are specific to our SMS messages. The type system controls how content can be annotated by defining the types of entities that can be labeled and how relationships among different entities can be labeled.
 
@@ -102,7 +122,7 @@ This will upload a set of **Entity Types** and **Relation Types**.
 
 ![](doc/source/images/wks/type_system-6_create_relation_entry.png)
 
-## 5. Import Corpus Documents
+### 5. Import Corpus Documents
 
 Corpus documents are required to train our machine-learning annotator component. For this Code Pattern, the corpus documents will contain example SMS messages.
 
@@ -118,7 +138,7 @@ From the **Access & Tools -> Documents** panel, press the **Upload Document Sets
 
 ![](doc/source/images/wks/documents-4-upload_corpus_documents.png)
 
-## 6. Create an Annotation Set
+### 6. Create an Annotation Set
 
 Once the corpus documents are loaded, we can start the human annotation process. This begins by dividing the corpus into multiple document sets and assigning the document sets to human annotators (for this Code Pattern, we will just be using using one document set and one annotator).
 
@@ -128,7 +148,7 @@ From the **Access & Tools -> Documents** panel, press the **Create Annotation Se
 
 ![](doc/source/images/wks/documents-10-create_annotation_set.png)
 
-## 7. Create a Task for Human Annotation
+### 7. Create a Task for Human Annotation
 
 Add a task for human annotation by creating a task and assigning it annotation sets.
 
@@ -144,7 +164,7 @@ A panel will then be displayed of the available annotation sets that can be assi
 
 ![](doc/source/images/wks/task-4-task_created.png)
 
-## 7.1 Start the Human Annotation task
+#### 7.1 Start the Human Annotation task
 
 Click on the task card to view the task details panel.
 
@@ -160,7 +180,7 @@ If you select any of the documents in the list, the **Document Annotation** pane
 
 ![](doc/source/images/wks/task-9-annotation-ground_truth_editor.png)
 
-## 7.2 Submit Annotation Set
+#### 7.2 Submit Annotation Set
 
 From the **Task** details panel, press the **Submit All Documents** button.
 
@@ -188,7 +208,7 @@ Select your **Annotation Set Name** and then press the **Accept** button. This s
 
 ![](doc/source/images/wks/task-20-annotation-annotation_set_accept-status_completed.png)
 
-## 8. Create the model
+### 8. Create the model
 
 Go to the **Model Management -> Performance** panel, and press the **Train and evaluate** button.
 
@@ -208,7 +228,7 @@ From this panel, select the **Edit Settings** button to view the **Document Set*
 
 This time, select the document sets for msg_1, msg_2 and msg_3, and then press the **Evaluate** button. This process may take several minutes to complete.
 
-> Note: In practice, you can create separate annotation sets for training and evaluation.
+> Note: For this simplified Code Pattern, we **evaluate** using only 3 messages as a short-cut to generate a reasonable precision/recall value (around .60), which should result in decent model performance. In practice, you would create separate annotation sets (each containing thousands of messages) for training and evaluation.
 
 ![](doc/source/images/wks/model_training_and_evaluation-6-chose_evaluation_set.png)
 
@@ -220,7 +240,7 @@ You can view the log files of the process by clicking the **View Log** button.
 
 ![](doc/source/images/wks/model_training_and_evaluation-8-logs.png)
 
-## 9. Deploy the machine learning model to NLU
+### 9. Deploy the machine learning model to NLU
 
 Now we can deploy our new model to the already created **NLU** service. Navigate to the **Version** menu on the left and press **Take Snapshot**.
 
@@ -246,13 +266,11 @@ Once deployed, a **Model ID** will be created. Keep note of this value as it wil
 
 > NOTE: You can also view this **Model ID** by pressing the **NLU** botton listed with your snapshot version.
 
-# Usage
-
-## cURL
+### 10. Test the model with cURL
 
 Using cURL is the quickest way to show the advantages of WKS. Let's see the result of using NLU with and without a WKS model.
 
-### NLU with a WKS model
+#### NLU with a WKS model
 
 In the following examples, replace `username` and `password` with your own **NLU** credentials. In this first example, we will also be adding an `entites.model` argument to the query string. Replace this value with your own **WKS** model ID. 
 
@@ -290,7 +308,7 @@ curl -u "$username":"$password" \
 }
 ```
 
-### NLU without a WKS model
+#### NLU without a WKS model
 
 Using **NLU** without a **WKS** model ID is less ideal, as the server does not extract the entities we are looking for. It extracts generic data such as company name and some location details, but it does not extract the domain specific offer details we desire.
 
@@ -313,6 +331,8 @@ curl -u "$username":"$password" \
     }]
 }
 ```
+
+### 11. Run the application
 
 ## Java Client
 
@@ -352,9 +372,11 @@ From a terminal run the command below from the root directory of the repository:
 mvn test
 ```
 
-# Deploy the App
+# Sample UI layout
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/sms-analysis-with-wks)
+![](doc/source/images/deployed-app.png)
+
+# Troubleshooting
 
 # Learn more
 
