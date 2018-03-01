@@ -103,7 +103,7 @@ public class DemoServlet extends HttpServlet {
 	public void init() throws ServletException {
 		super.init();
 		processVCAPServices();
-		modelId = System.getenv("modelId");
+		modelId = System.getenv("MODEL_ID");
 	}
 
 	/**
