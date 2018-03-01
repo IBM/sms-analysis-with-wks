@@ -1,0 +1,8 @@
+{
+  "name": "wks-sms-analyzer",
+  "version": "1.0.0",
+  "repository": {
+     "type": "git",
+     "url": "https://github.com/ragudiko/wks-nlu-sms-analysis.git"
+  }
+}

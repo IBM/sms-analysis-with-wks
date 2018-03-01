@@ -56,17 +56,8 @@ public class SimpleNLUClient {
 		//builder.text("We Miss U @Sree; Order Ur Fav Pizza Now; Buy 1 Regular Pizza & Get 40% OFF. Walk-In/Order@ 68886888/ goo.gl/CQThqp Cpn: CRM7BEA217E4F Valid till 21 Mar T&C");
 		builder.text(smsText);
 	 	AnalyzeOptions parameters = builder.build();
-    AnalysisResults results = null;
-    try {
+		return service.analyze(parameters).execute();
 
-        results = service.analyze(parameters).execute();
-				System.out.println("Results:>>"+results);
-    }
-    catch (Exception e) {
-    	e.printStackTrace();
-			System.out.println("Error:"+e);
-    }
-		return results;
 	}
 	/*public static void main(String a[]){
 		SimpleNLUClient client = new SimpleNLUClient();

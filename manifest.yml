@@ -6,11 +6,9 @@ declared-services:
 applications:
 - name: cognitive-sms-client
   memory: 512M
-  path: output/webApp.war
+  path: target/NLUApp.war
   disk_quota: 1024M
   random-route: true
   buildpack: liberty-for-java
   services:
   - sms_nlu_service
-env:
-  modelId: c1cebfb0-0cc5-4c4b-b4e3-76733852e736
