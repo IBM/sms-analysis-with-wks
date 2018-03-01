@@ -126,11 +126,11 @@ This will upload a set of **Entity Types** and **Relation Types**.
 
 Corpus documents are required to train our machine-learning annotator component. For this Code Pattern, the corpus documents will contain example SMS messages.
 
-> NOTE: To view the individual SMS messages in easy-to-read format, view the file [data/offers_msg.csv](data/offers_msg.csv) found in the local repository. 
+> NOTE: To view the individual SMS messages in easy-to-read format, view the file [data/offers_msg.csv](data/offers_msg.csv) found in the local repository.
 
 From the **Access & Tools -> Documents** panel, press the **Upload Document Sets** button to import a **Document Set** file. Use the corpus documents file [wks-resources/corpus-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.zip](wks-resources/corpus-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.zip) found in the local repository.
 
-> NOTE: Uploading the corpus documents provided in this Code Pattern is not required, but recommended to simplify the annotation process (all provided documents will come pre-annotated). An alternative approach would be to is to upload standard text files and perform the annotations manually. 
+> NOTE: Uploading the corpus documents provided in this Code Pattern is not required, but recommended to simplify the annotation process (all provided documents will come pre-annotated). An alternative approach would be to is to upload standard text files and perform the annotations manually.
 
 > NOTE: Select the option to "upload the original workspace's type system first".
 
@@ -220,8 +220,7 @@ From the **Document Set** name list, select the **Annotation Set Name** you crea
 
 This process may take several minutes to complete. Progress will be shown in the upper right corner of the panel.
 
-![](doc/source/images/wks/model_training_and_evaluation-5-training_completed.png)
-
+<!--
 Once complete, return to the **Model Management -> Performance** panel and select the **Train and evaluate** button again.
 
 From this panel, select the **Edit Settings** button to view the **Document Set** list again.
@@ -231,11 +230,14 @@ This time, select the document sets for msg_1, msg_2 and msg_3, and then press t
 > Note: For this simplified Code Pattern, we **evaluate** using only 3 messages as a short-cut to generate a reasonable precision/recall value (around .60), which should result in decent model performance. In practice, you would create separate annotation sets (each containing thousands of messages) for training and evaluation.
 
 ![](doc/source/images/wks/model_training_and_evaluation-6-chose_evaluation_set.png)
+-->
+Once training and evaluation process is complete, you will see the results of the test and evaluate process.
 
-Once complete, you will see the results of the test and evaluate process.
+![](doc/source/images/wks/model_training_and_evaluation-5-training_evaluation_completed.png)
 
+<!--
 ![](doc/source/images/wks/model_training_and_evaluation-7-evaluation_completed.png)
-
+-->
 You can view the log files of the process by clicking the **View Log** button.
 
 ![](doc/source/images/wks/model_training_and_evaluation-8-logs.png)
@@ -260,7 +262,7 @@ Then enter your IBM Cloud account information to locate your **NLU** service to 
 
 ![](doc/source/images/wks/model_deployment-4.png)
 
-Once deployed, a **Model ID** will be created. Keep note of this value as it will be required later in this Code Pattern. 
+Once deployed, a **Model ID** will be created. Keep note of this value as it will be required later in this Code Pattern.
 
 ![](doc/source/images/wks/model_deployment-5.png)
 
@@ -272,7 +274,7 @@ Using cURL is the quickest way to show the advantages of WKS. Let's see the resu
 
 #### NLU with a WKS model
 
-In the following examples, replace `username` and `password` with your own **NLU** credentials. In this first example, we will also be adding an `entites.model` argument to the query string. Replace this value with your own **WKS** model ID. 
+In the following examples, replace `username` and `password` with your own **NLU** credentials. In this first example, we will also be adding an `entites.model` argument to the query string. Replace this value with your own **WKS** model ID.
 
 The SMS text is URL encoded as it is passed as a query argument. Note that the model used to train and evaluate entities is based on a few sample SMS offers, which can be viewed in the [data/offers_msg.csv](data/offers_msg.csv) file.
 
