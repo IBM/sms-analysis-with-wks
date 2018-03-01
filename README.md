@@ -59,24 +59,6 @@ TBD!
 
 # Steps
 
-Use the ``Deploy to IBM Cloud`` button **OR** create the services and run locally.
-
-## Deploy to IBM Cloud
-
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/sms-analysis-with-wks)
-
-1. Press the above ``Deploy to IBM Cloud`` button and then click on ``Deploy``.
-
-2. In Toolchains, click on Delivery Pipeline to watch while the app is deployed. Once deployed, the app can be viewed by clicking 'View app'.
-
-![](doc/source/images/toolchain-pipeline.png)
-
-3. To see the app and services created and configured for this journey, use the IBM Cloud dashboard. The app is named `sms-analysis-with-wks` with a unique suffix. The following service is created:
-    * sms-nlu-service
-
-## Run locally
-> NOTE: These steps are only needed when running locally instead of using the ``Deploy to IBM Cloud`` button.
-
 1. [Clone the repo](#1-clone-the-repo)
 2. [Create IBM Cloud services](#2-create-ibm-cloud-services)
 3. [Create a Watson Knowledge Studio workspace](#3-create-a-watson-knowledge-studio-workspace)
@@ -102,6 +84,8 @@ Create the following services:
 * [**Watson Natural Language Understanding**](https://console.bluemix.net/catalog/services/natural-language-understanding)
 * [**Watson Knowledge Studio**](https://console.bluemix.net/catalog/services/knowledge-studio)
 
+> NOTE: It is recommended that you name your NLU service `sms-nlu-service`. This will eliminate some steps if you eventually decide to deploy your app to the IBM Cloud. 
+
 ### 3. Create a Watson Knowledge Studio workspace
 
 Launch the **WKS** tool and create a new **workspace**.
@@ -112,7 +96,7 @@ Launch the **WKS** tool and create a new **workspace**.
 
 A type system allows us to define things that are specific to our SMS messages. The type system controls how content can be annotated by defining the types of entities that can be labeled and how relationships among different entities can be labeled.
 
-To upload our pre-defined type system, from the **Access & Tools -> Entity Types** panel, press the **Upload** button to import the **Type System** file  [wks-resources/types-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.json](wks-resources/types-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.json) found in the local repository.
+To upload our pre-defined type system, from the **Access & Tools -> Entity Types** panel, press the **Upload** button to import the **Type System** file  [data/types-8f342360-1c8f-11e8-9ded-ddbbc0ccb99a.json](data/types-8f342360-1c8f-11e8-9ded-ddbbc0ccb99a.json) found in the local repository.
 
 ![](doc/source/images/wks/type_system-4_upload_type_system_entry.png)
 
@@ -128,7 +112,7 @@ Corpus documents are required to train our machine-learning annotator component.
 
 > NOTE: To view the individual SMS messages in easy-to-read format, view the file [data/offers_msg.csv](data/offers_msg.csv) found in the local repository.
 
-From the **Access & Tools -> Documents** panel, press the **Upload Document Sets** button to import a **Document Set** file. Use the corpus documents file [wks-resources/corpus-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.zip](wks-resources/corpus-a6850330-3aeb-11e7-bf5c-f98dfa3ddf29.zip) found in the local repository.
+From the **Access & Tools -> Documents** panel, press the **Upload Document Sets** button to import a **Document Set** file. Use the corpus documents file [data/corpus-8f342360-1c8f-11e8-9ded-ddbbc0ccb99a.zip](data/corpus-8f342360-1c8f-11e8-9ded-ddbbc0ccb99a.zip) found in the local repository.
 
 > NOTE: Uploading the corpus documents provided in this Code Pattern is not required, but recommended to simplify the annotation process (all provided documents will come pre-annotated). An alternative approach would be to is to upload standard text files and perform the annotations manually.
 
@@ -164,7 +148,7 @@ A panel will then be displayed of the available annotation sets that can be assi
 
 ![](doc/source/images/wks/task-4-task_created.png)
 
-#### 7.1 Start the Human Annotation task
+### 7.1 Start the Human Annotation task
 
 Click on the task card to view the task details panel.
 
@@ -180,7 +164,7 @@ If you select any of the documents in the list, the **Document Annotation** pane
 
 ![](doc/source/images/wks/task-9-annotation-ground_truth_editor.png)
 
-#### 7.2 Submit Annotation Set
+### 7.2 Submit Annotation Set
 
 From the **Task** details panel, press the **Submit All Documents** button.
 
@@ -214,24 +198,15 @@ Go to the **Model Management -> Performance** panel, and press the **Train and e
 
 ![](doc/source/images/wks/model_training_and_evaluation-1.png)
 
-From the **Document Set** name list, select the **Annotation Set Name** you created previously and press the **Train** button.
+From the **Document Set** name list, select the **Annotation Set Name** you created previously and press the **Train & Evaluate** button.
 
 ![](doc/source/images/wks/model_training_and_evaluation-2.png)
 
 This process may take several minutes to complete. Progress will be shown in the upper right corner of the panel.
 
-<!--
-Once complete, return to the **Model Management -> Performance** panel and select the **Train and evaluate** button again.
+> Note: In practice, you would create separate annotation sets (each containing thousands of messages) for training and evaluation.
 
-From this panel, select the **Edit Settings** button to view the **Document Set** list again.
-
-This time, select the document sets for msg_1, msg_2 and msg_3, and then press the **Evaluate** button. This process may take several minutes to complete.
-
-> Note: For this simplified Code Pattern, we **evaluate** using only 3 messages as a short-cut to generate a reasonable precision/recall value (around .60), which should result in decent model performance. In practice, you would create separate annotation sets (each containing thousands of messages) for training and evaluation.
-
-![](doc/source/images/wks/model_training_and_evaluation-6-chose_evaluation_set.png)
--->
-Once training and evaluation process is complete, you will see the results of the test and evaluate process.
+Once complete, you will see the results of the train and evaluate process.
 
 ![](doc/source/images/wks/model_training_and_evaluation-5-training_evaluation_completed.png)
 
@@ -336,7 +311,34 @@ curl -u "$username":"$password" \
 
 ### 11. Run the application
 
-## Pre-requisite
+Use the ``Deploy to IBM Cloud`` button **OR** run locally.
+
+### Deploy to IBM Cloud
+
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/sms-analysis-with-wks)
+
+1. Press the above ``Deploy to IBM Cloud`` button and then click on ``Deploy``.
+
+2. In Toolchains, click on Delivery Pipeline to watch while the app is deployed. Once deployed, the app can be viewed by clicking 'View app'.
+
+![](doc/source/images/toolchain-pipeline.png)
+
+3. To see the app and services created and configured for this journey, use the IBM Cloud dashboard. The app is named `sms-analysis-with-wks` with a unique suffix. The following service is created:
+    * sms-nlu-service
+
+4. One last step is required to configure the app to run with your WKS model.
+
+In the IBM Cloud dashboard, find the app that was created. Click on `Runtime` on the menu and navigate to the `Environment variables` tab.
+
+!!! Add screen shot
+
+Set the `MODEL_ID` to the value you saved in Step 9.
+
+Save the new values and restart the application (re-start should occur automatically), and watch the log for errors.  
+
+### Run locally
+
+#### Pre-requisite
 
 Maven >= 3.5 is used to build, test, and run. Check your maven version using the following command:
 
@@ -346,7 +348,7 @@ mvn -v
 
 To download and install maven, refer to [maven.](https://maven.apache.org/download.cgi)
 
-## Build and Run
+#### Build and Run
 
 In your project root directory, use maven to build and deploy the WAR file and start the app.
 
@@ -357,7 +359,7 @@ mvn liberty:run-server
 
 Browse to http://localhost:9080 to see the app.
 
-## Testing
+#### Testing
 
 To run the unit tests:
 
