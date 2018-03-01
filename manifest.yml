@@ -12,3 +12,5 @@ applications:
   buildpack: liberty-for-java
   services:
   - sms_nlu_service
+env:
+  MODEL_ID: placeholder
