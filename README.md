@@ -264,7 +264,7 @@ Once deployed, a **Model ID** will be created. Keep note of this value as it wil
 
 ![](doc/source/images/wks/model_deployment-5.png)
 
-> NOTE: You can also view this **Model ID** by pressing the **NLU** botton listed with your snapshot version.
+> NOTE: You can also view this **Model ID** by pressing the **NLU** button listed with your snapshot version.
 
 ### 10. Test the model with cURL
 
@@ -334,39 +334,30 @@ curl -u "$username":"$password" \
 
 ### 11. Run the application
 
-## Java Client
+## Pre-requisite
 
-You can run the simple java client provided in this project to extract the entities from SMS messages.
+Maven >= 3.5 is used to build, test, and run. Check your maven version using the following command:
+
+```
+mvn -v
+```
+
+To download and install maven, refer to [maven.](https://maven.apache.org/download.cgi)
+
+## Build and Run
+
+In your project root directory, use maven to build and deploy the WAR file and start the app.
+
+```
+mvn clean install
+mvn liberty:run-server
+```
+
+Browse to http://localhost:9080 to see the app.
 
 ## Testing
 
-JUnit tests are run using [maven](https://maven.apache.org/download.cgi). To configure maven, open `.bash_profile` if it exists (create a new `.bash_profile` otherwise), and add the entry below:
-
-```
-JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_40.jdk/Contents/Home
-export JAVA_HOME
-M2_HOME=/usr/local/apache-maven/apache-maven-3.1.1
-export M2_HOME
-PATH=$PATH:$JAVA_HOME/bin:$M2_HOME/bin
-export PATH
-```
-
-If Apache Maven is being used, the following dependency should be included:
-
-```xml
-<dependency>
-    <groupId>com.ibm.watson.developer_cloud</groupId>
-    <artifactId>java-sdk</artifactId>
-    <version>1.0</version>
-</dependency>
-<dependency>
-    <groupId>com.ibm.watson.developer_cloud</groupId>
-    <artifactId>java-sdk</artifactId>
-    <version>1.0</version>
-</dependency>
-```
-
-From a terminal run the command below from the root directory of the repository:
+To run the unit tests:
 
 ```
 mvn test
