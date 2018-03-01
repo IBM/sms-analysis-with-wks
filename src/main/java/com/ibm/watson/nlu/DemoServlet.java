@@ -92,8 +92,10 @@ public class DemoServlet extends HttpServlet {
 			//" { \"type\": \"Offer\", \"text\": \"Get 3 FREE\", \"count\": 1 }, { \"type\": \"Offer_Period\", \"text\": \"Valid till 15 Feb 2017\", \"count\": 1 }, { \"type\": \"Term_and_Conditions\", \"text\": \"T&C\", \"count\": 1 } ] }");
 
 		} catch (Exception e) {
+		    // Don't throw the error. Stuff it in an "Error" entity so the user can see it.
 			logger.log(Level.SEVERE, "Service error: " + e.getMessage(), e);
-			resp.setStatus(HttpStatus.SC_BAD_GATEWAY);
+			resp.getWriter().println("{ \"language\": \"en\", \"entities\": [ { \"type\": \"Error\", \"text\": \"" +
+					e.toString() + "\", \"count\": 1 } ] }");
 		}
 	}
 
