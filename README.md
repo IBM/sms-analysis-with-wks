@@ -328,7 +328,7 @@ Use the ``Deploy to IBM Cloud`` button **OR** run locally.
 
 4. One last step is required to configure the app to run with your WKS model.
 
-In the IBM Cloud dashboard, find the app that was created. Click on `Runtime` on the menu and navigate to the `Environment variables` tab.
+In the IBM Cloud dashboard, find the app that was created and click on it to access the details panel. Click on `Runtime` on the menu and navigate to the `Environment variables` tab.
 
 !!! Add screen shot
 
