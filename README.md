@@ -387,13 +387,13 @@ mvn test
 
 **Error:com.ibm.watson.developer_cloud.service.exception.UnauthorizedException: Unauthorized: Access is denied due to invalid credentials**
 
-> This should only occur if running locally. Check to ensure the credentials listed in `/src/main/resources/config.properties` matches the credentails assigned to your NLU service.
+> This should only occur if running locally. Check to ensure the credentials listed in `/src/main/resources/config.properties` matches the credentials assigned to your NLU service.
 
 **Error:com.ibm.watson.developer_cloud.service.exception.NotFoundException: model not found**
 
 > If running locally, check to ensure the **WATSON_KNOWLEDGE_STUDIO_MODEL_ID** listed in `/src/main/resources/config.properties` matches the the model ID you deployed to your NLU instance, as described in [Step #9](#9-deploy-the-machine-learning-model-to-nlu) above.
 
-> If you have deployed your app on the IBM Cloud, check to ensure the MODEL_ID vcap variable in your runtime instance is set correctly, as described in the **Deploy to IBM Cloud** section of [Step #11](#11-run-the-application) above.
+> If you have deployed your app on the IBM Cloud, check to ensure the MODEL_ID environment variable in your runtime instance is set correctly, as described in the **Deploy to IBM Cloud** section of [Step #11](#11-run-the-application) above.
 
 # Learn more
 
