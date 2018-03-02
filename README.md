@@ -29,16 +29,20 @@ After completing this code pattern, the user will learn how to:
 
 ## Flow
 
-![](doc/source/images/wks-nlu-process.png)
+![](doc/source/images/architecture.png)
 
 1. The user provides the client with an SMS message to be analyzed.
 2. The client sends the SMS to Watson NLU for analysis, specifying which machine learning WKS model to use.
 3. Watson NLU extracts the domain specific entities and returns the results to the client.
 4. The client renders the results to the user.
 
-## Technical Architecture
+### How does Watson Knowledge Studio work?
 
-![](doc/source/images/technical_architecture_2.png)
+The image below explains the process of how Watson Knowledge Studio works in light detail. For greater detail see Steps [4. Upload Type System](#4-upload-type-system) through [9. Deploy the machine learning model to NLU](#9-deploy-the-machine-learning-model-to-nlu).
+
+![](doc/source/images/wks-nlu-process.png)
+
+In short, a type system is built and supporting documents are uploaded that have domain specific wording. From here a model must be built to properly understand the documents, this is where the annotations come in. Once the corpus and annotations are set you are free to create a model and deploy it to a Watson Natural Language Understanding instance.
 
 ## Included components
 
