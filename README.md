@@ -110,7 +110,7 @@ This will upload a set of **Entity Types** and **Relation Types**.
 
 Corpus documents are required to train our machine-learning annotator component. For this Code Pattern, the corpus documents will contain example SMS messages.
 
-> NOTE: To view the individual SMS messages in easy-to-read format, view the file [data/offers_msg.csv](data/offers_msg.csv) found in the local repository.
+> NOTE: Individual SMS sample text messages are located in the [data](data) directory of the local respoitory.
 
 From the **Access & Tools -> Documents** panel, press the **Upload Document Sets** button to import a **Document Set** file. Use the corpus documents file [data/corpus-8f342360-1c8f-11e8-9ded-ddbbc0ccb99a.zip](data/corpus-8f342360-1c8f-11e8-9ded-ddbbc0ccb99a.zip) found in the local repository.
 
@@ -251,7 +251,7 @@ Using cURL is the quickest way to show the advantages of WKS. Let's see the resu
 
 In the following examples, replace `username` and `password` with your own **NLU** credentials. In this first example, we will also be adding an `entites.model` argument to the query string. Replace this value with your own **WKS** model ID.
 
-The SMS text is URL encoded as it is passed as a query argument. Note that the model used to train and evaluate entities is based on a few sample SMS offers, which can be viewed in the [data/offers_msg.csv](data/offers_msg.csv) file.
+The SMS text is URL encoded as it is passed as a query argument. Note that the model used to train and evaluate entities is based on a few sample SMS offers, which are located in the [data](data) directory of the local repository.
 
 After issuing this cURL command, it is clear in the server response that we can see domain specific entities like `Offer`, `Offer_Period`, and `Merchant`.
 
