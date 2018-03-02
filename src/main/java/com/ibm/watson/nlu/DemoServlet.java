@@ -109,6 +109,13 @@ public class DemoServlet extends HttpServlet {
 		if (! getConfigParams()) {
 			processVCAPServices();
 			modelId = System.getenv("MODEL_ID");
+
+			if (modelId == null) {
+				// if no model ID found, set it to a value that will 
+				// let the user know what the issue is
+				modelId = "no_model_id_found";
+			}
+			logger.info("modelId = " + modelId);
 		}
 	}
 
