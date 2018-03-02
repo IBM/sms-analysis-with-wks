@@ -134,9 +134,9 @@ public class DemoServlet extends HttpServlet {
 		}
 
 		// if one isn't set, consider them all not set
-		if (username == "<add_nlu_username>" ||
-				password == "<add_nlu_password>" ||
-				modelId == "<add_model_id>") {
+		if (username.equals("<add_nlu_username>") ||
+				password.equals("<add_nlu_password>") ||
+				modelId.equals("<add_model_id>")) {
 			return false;
 		}
 
