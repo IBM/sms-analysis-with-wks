@@ -71,13 +71,13 @@ TBD!
 10. [Test the model with cURL](#10-test-the-model-with-curl)
 11. [Run the application](#11-run-the-application)
 
-### 1. Clone the repo
+## 1. Clone the repo
 
 ```
 $ git clone https://github.com/IBM/sms-analysis-with-wks
 ```
 
-### 2. Create IBM Cloud services
+## 2. Create IBM Cloud services
 
 Create the following services:
 
@@ -86,13 +86,13 @@ Create the following services:
 
 > NOTE: It is recommended that you name your NLU service `sms-nlu-service`. This will eliminate some steps if you eventually decide to deploy your app to the IBM Cloud. 
 
-### 3. Create a Watson Knowledge Studio workspace
+## 3. Create a Watson Knowledge Studio workspace
 
 Launch the **WKS** tool and create a new **workspace**.
 
 ![](doc/source/images/wks/create_new_workspace.png)
 
-### 4. Upload Type System
+## 4. Upload Type System
 
 A type system allows us to define things that are specific to our SMS messages. The type system controls how content can be annotated by defining the types of entities that can be labeled and how relationships among different entities can be labeled.
 
@@ -106,7 +106,7 @@ This will upload a set of **Entity Types** and **Relation Types**.
 
 ![](doc/source/images/wks/type_system-6_create_relation_entry.png)
 
-### 5. Import Corpus Documents
+## 5. Import Corpus Documents
 
 Corpus documents are required to train our machine-learning annotator component. For this Code Pattern, the corpus documents will contain example SMS messages.
 
@@ -122,7 +122,7 @@ From the **Access & Tools -> Documents** panel, press the **Upload Document Sets
 
 ![](doc/source/images/wks/documents-4-upload_corpus_documents.png)
 
-### 6. Create an Annotation Set
+## 6. Create an Annotation Set
 
 Once the corpus documents are loaded, we can start the human annotation process. This begins by dividing the corpus into multiple document sets and assigning the document sets to human annotators (for this Code Pattern, we will just be using using one document set and one annotator).
 
@@ -132,7 +132,7 @@ From the **Access & Tools -> Documents** panel, press the **Create Annotation Se
 
 ![](doc/source/images/wks/documents-10-create_annotation_set.png)
 
-### 7. Create a Task for Human Annotation
+## 7. Create a Task for Human Annotation
 
 Add a task for human annotation by creating a task and assigning it annotation sets.
 
@@ -192,7 +192,7 @@ Select your **Annotation Set Name** and then press the **Accept** button. This s
 
 ![](doc/source/images/wks/task-20-annotation-annotation_set_accept-status_completed.png)
 
-### 8. Create the model
+## 8. Create the model
 
 Go to the **Model Management -> Performance** panel, and press the **Train and evaluate** button.
 
@@ -217,7 +217,7 @@ You can view the log files of the process by clicking the **View Log** button.
 
 ![](doc/source/images/wks/model_training_and_evaluation-8-logs.png)
 
-### 9. Deploy the machine learning model to NLU
+## 9. Deploy the machine learning model to NLU
 
 Now we can deploy our new model to the already created **NLU** service. Navigate to the **Version** menu on the left and press **Take Snapshot**.
 
@@ -243,11 +243,11 @@ Once deployed, a **Model ID** will be created. Keep note of this value as it wil
 
 > NOTE: You can also view this **Model ID** by pressing the **NLU** button listed with your snapshot version.
 
-### 10. Test the model with cURL
+## 10. Test the model with cURL
 
 Using cURL is the quickest way to show the advantages of WKS. Let's see the result of using NLU with and without a WKS model.
 
-#### NLU with a WKS model
+### NLU with a WKS model
 
 In the following examples, replace `username` and `password` with your own **NLU** credentials. In this first example, we will also be adding an `entites.model` argument to the query string. Replace this value with your own **WKS** model ID.
 
@@ -285,7 +285,7 @@ curl -u "$username":"$password" \
 }
 ```
 
-#### NLU without a WKS model
+### NLU without a WKS model
 
 Using **NLU** without a **WKS** model ID is less ideal, as the server does not extract the entities we are looking for. It extracts generic data such as company name and some location details, but it does not extract the domain specific offer details we desire.
 
@@ -309,7 +309,7 @@ curl -u "$username":"$password" \
 }
 ```
 
-### 11. Run the application
+## 11. Run the application
 
 Use the ``Deploy to IBM Cloud`` button **OR** run locally.
 
@@ -330,7 +330,7 @@ Use the ``Deploy to IBM Cloud`` button **OR** run locally.
 
 In the IBM Cloud dashboard, find the app that was created and click on it to access the details panel. Click on `Runtime` on the menu and navigate to the `Environment variables` tab.
 
-!!! Add screen shot
+![](doc/source/images/set-env.png)
 
 Set the `MODEL_ID` to the value you saved in Step 9.
 
@@ -347,6 +347,16 @@ mvn -v
 ```
 
 To download and install maven, refer to [maven.](https://maven.apache.org/download.cgi)
+
+#### Add NLU Credentials and WKS Model ID to config.properties file
+
+The config.properties file is located in the `src/main/resources` directory. Replace the default values with the appropriate credentials and model ID values (quotes are not required).
+
+```
+NATURAL_LANGUAGE_UNDERSTANDING_USERNAME = <add_nlu_username>
+NATURAL_LANGUAGE_UNDERSTANDING_PASSWORD = <add_nlu_password>
+WATSON_KNOWLEDGE_STUDIO_MODEL_ID = <add_model_id>
+```
 
 #### Build and Run
 
