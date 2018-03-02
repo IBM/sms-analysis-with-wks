@@ -12,4 +12,5 @@
 
     <application name="NLUApp" context-root="/" location="${appLocation}" type="war"/>
 
+    <logging consoleLogLevel="INFO" />
 </server>

@@ -38,7 +38,7 @@ public class SimpleNLUClient {
 
 	}
 
-	public AnalysisResults	 analyze(String modelId, String smsText){
+	public AnalysisResults analyze(String modelId, String smsText){
 
 		EntitiesOptions entities = new EntitiesOptions.Builder()
 	            .emotion(false)
