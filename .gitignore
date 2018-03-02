@@ -1,4 +1,9 @@
 /target/
 
+# Java
+.classpath
+.project
+.settings
+
 # Mac files
 .DS_Store
