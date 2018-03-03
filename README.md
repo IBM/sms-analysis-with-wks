@@ -31,12 +31,11 @@ After completing this code pattern, the user will learn how to:
 
 ![](doc/source/images/architecture.png)
 
-1. A model is created in Watson Knowledge Studio using corpus and type files.
-1. The user provides the client with an SMS message to be analyzed.
-1. The client sends the SMS to Watson NLU for analysis
-1. Watson NLU loads the WKS model.
-1. Watson Knowledge Studio extracts domain specific entities and sends the results back to Watson NLU.
-1. Watson NLU returns the results to the client and the user.
+1. Corpus and type files are loaded into Watson Knowledge Studio.
+1. A user generates a model by training and evaluating data.
+1. The WKS model is deployed to Watson NLU.
+1. A user provides an SMS message to the app that is to be analyzed.
+1. The SMS message is analyzed by Watson NLU for processing and domain specific based on the WKS model are returned.
 
 ### How does Watson Knowledge Studio work?
 
