@@ -2,7 +2,7 @@
 
 ![Build Status](https://travis-ci.org/IBM/sms-analysis-with-wks.svg?branch=master)
 
-This code pattern describes how to analyze SMS messages with Watson Knowledge Studio (WKS) and Watson's Natural Language Understanding (NLU) capability to extract entities in the data. Current natural language processing techniques cannot extract or interpret data that is domain or industry specific. The data (entities) represent different meaning in different domains. The best answer to such a problem is IBM's Watson Knowledge Studio. Consider a case where we need to extract entities present in a commercial SMS. For example:
+This code pattern describes how to analyze SMS messages with Watson Knowledge Studio (WKS) and Watson's Natural Language Understanding (NLU) capability to extract entities in the data. Current natural language processing techniques cannot extract or interpret data that is domain or industry specific because entities have different meanings in different domains. The best answer to such a problem is IBM's Watson Knowledge Studio. Consider a case where we need to extract entities present in a commercial SMS. For example:
 
 ```
 PIZZA! Don't Cook Wednesdays are here! Get 50% off a Medium Pizza.
@@ -52,6 +52,7 @@ In short, a type system is built and supporting documents are uploaded that have
 ## Featured Technologies
 
 * [Artificial Intelligence](https://medium.com/ibm-data-science-experience): Artificial intelligence can be applied to disparate solution spaces to deliver disruptive technologies.
+* [Java](https://java.com): A secure, object-oriented programming language for creating applications.
 
 # Watch the Video
 
