@@ -259,31 +259,77 @@ After issuing this cURL command, it is clear in the server response that we can 
 
 ```
 curl -u "$username":"$password" \
-"https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2017-02-27&text=DUNKI%20DONUTS%20is%20now%20open%20at%20Girgaum%20Chowpatty.%20Walk-in%20and%20enjoy%20the%20Valentaine%20SPL%20offer%20on%20your%20favorite%20Donuts.%20Buy%203%20%26%20Get%203%20FREE.%20Valid%20till%2015%20Feb%202017.%20T%26C&features=entities&entities.model=10:047ef383-83e6-4e90-913b-af04b731859d"
+"https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2017-02-27&text=Valentines%20Day%20Offer%2c%20get%20Rs.10000%20cashback%20%2b%20No%20Cost%20EMI%20on%20all%20models%20of%20iPad.%20Valid%20till%20Feb%2014%20at%20your%20nearest%20Imagine.%20https%3a%2f%2fgoo.gl%2fhFJcfk&features=entities&entities.model=10:7907e3c0-44ba-42be-8f4f-5eff5a83a324"
 
 {
-    "language": "en",
-    "entities": [{
-        "type": "Merchant",
-        "text": "DUNKI DONUTS",
-        "count": 1
-    }, {
-        "type": "Location",
-        "text": "Girgaum",
-        "count": 1
-    }, {
-        "type": "Offer",
-        "text": "Get 3 FREE",
-        "count": 1
-    }, {
-        "type": "Offer_Period",
-        "text": "Valid till 15 Feb 2017",
-        "count": 1
-    }, {
-        "type": "Term_and_Conditions",
-        "text": "T&C",
-        "count": 1
-    }]
+  "usage": {
+    "text_units": 1,
+    "text_characters": 145,
+    "features": 1
+  },
+  "language": "en",
+  "entities": [
+    {
+      "type": "Festival_Occasion_Offers",
+      "text": "Valentines Day",
+      "disambiguation": {
+        "subtype": [
+          "NONE"
+        ]
+      },
+      "count": 1
+    },
+    {
+      "type": "Offer",
+      "text": "get Rs.10000 cashback + No Cost EMI",
+      "disambiguation": {
+        "subtype": [
+          "NONE"
+        ]
+      },
+      "count": 1
+    },
+    {
+      "type": "Offer_Applicable",
+      "text": "on all models of iPad",
+      "disambiguation": {
+        "subtype": [
+          "NONE"
+        ]
+      },
+      "count": 1
+    },
+    {
+      "type": "Validity_Period",
+      "text": "Valid till Feb 14",
+      "disambiguation": {
+        "subtype": [
+          "NONE"
+        ]
+      },
+      "count": 1
+    },
+    {
+      "type": "Merchant",
+      "text": "Imagine",
+      "disambiguation": {
+        "subtype": [
+          "NONE"
+        ]
+      },
+      "count": 1
+    },
+    {
+      "type": "Merchant_URL",
+      "text": "https://goo.gl/hFJcfk",
+      "disambiguation": {
+        "subtype": [
+          "NONE"
+        ]
+      },
+      "count": 1
+    }
+  ]
 }
 ```
 
@@ -293,21 +339,28 @@ Using **NLU** without a **WKS** model ID is less ideal, as the server does not e
 
 ```
 curl -u "$username":"$password" \
-"https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2017-02-27&text=DUNKI%20DONUTS%20is%20now%20open%20at%20Girgaum%20Chowpatty.%20Walk-in%20and%20enjoy%20the%20Valentaine%20SPL%20offer%20on%20your%20favorite%20Donuts.%20Buy%203%20%26%20Get%203%20FREE.%20Valid%20till%2015%20Feb%202017.%20T%26C&features=entities"
+"https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2017-02-27&text=Valentines%20Day%20Offer%2c%20get%20Rs.10000%20cashback%20%2b%20No%20Cost%20EMI%20on%20all%20models%20of%20iPad.%20Valid%20till%20Feb%2014%20at%20your%20nearest%20Imagine.%20https%3a%2f%2fgoo.gl%2fhFJcfk&features=entities"
 
 {
-    "language": "en",
-    "entities": [{
-        "type": "Company",
-        "text": "DUNKI DONUTS",
-        "relevance": 0.976076,
-        "count": 1
-    }, {
-        "type": "GeographicFeature",
-        "text": "Girgaum Chowpatty",
-        "relevance": 0.65276,
-        "count": 1
-    }]
+  "usage": {
+    "text_units": 1,
+    "text_characters": 145,
+    "features": 1
+  },
+  "language": "en",
+  "entities": [
+    {
+      "type": "Location",
+      "text": "Imagine. https://goo.gl/hFJcfk",
+      "relevance": 0.249854,
+      "disambiguation": {
+        "subtype": [
+          "City"
+        ]
+      },
+      "count": 1
+    }
+  ]
 }
 ```
 
