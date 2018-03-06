@@ -2,7 +2,7 @@
 
 ![Build Status](https://travis-ci.org/IBM/sms-analysis-with-wks.svg?branch=master)
 
-This code pattern describes how to analyze SMS messages with Watson Knowledge Studio (WKS) and Watson's Natural Language Understanding (NLU) capability to extract entities in the data. Current natural language processing techniques cannot extract or interpret data that is domain or industry specific. The data (entities) represent different meaning in different domains. The best answer to such a problem is IBM's Watson Knowledge Studio. Consider a case where we need to extract entities present in a commercial SMS. For example:
+This code pattern describes how to analyze SMS messages with Watson Knowledge Studio (WKS) and Watson's Natural Language Understanding (NLU) capability to extract entities in the data. Current natural language processing techniques cannot extract or interpret data that is domain or industry specific because entities have different meanings in different domains. The best answer to such a problem is IBM's Watson Knowledge Studio. Consider a case where we need to extract entities present in a commercial SMS. For example:
 
 ```
 PIZZA! Don't Cook Wednesdays are here! Get 50% off a Medium Pizza.
@@ -31,10 +31,11 @@ After completing this code pattern, the user will learn how to:
 
 ![](doc/source/images/architecture.png)
 
-1. The user provides the client with an SMS message to be analyzed.
-2. The client sends the SMS to Watson NLU for analysis, specifying which machine learning WKS model to use.
-3. Watson NLU extracts the domain specific entities and returns the results to the client.
-4. The client renders the results to the user.
+1. Load type system and corpus files into Watson Knowledge Studio.
+1. A user generates a model by training and evaluating data.
+1. The WKS model is deployed to Watson NLU.
+1. A user provides an SMS message to the app for analysis.
+1. The SMS message is analyzed by Watson NLS for processing and returns extracted domain specific entities based on the WKS model are returned.
 
 ### How does Watson Knowledge Studio work?
 
@@ -52,6 +53,7 @@ In short, a type system is built and supporting documents are uploaded that have
 ## Featured Technologies
 
 * [Artificial Intelligence](https://medium.com/ibm-data-science-experience): Artificial intelligence can be applied to disparate solution spaces to deliver disruptive technologies.
+* [Java](https://java.com): A secure, object-oriented programming language for creating applications.
 
 # Watch the Video
 
@@ -110,7 +112,7 @@ This will upload a set of **Entity Types** and **Relation Types**.
 
 Corpus documents are required to train our machine-learning annotator component. For this Code Pattern, the corpus documents will contain example SMS messages.
 
-> NOTE: To view the individual SMS messages in easy-to-read format, view the file [data/offers_msg.csv](data/offers_msg.csv) found in the local repository.
+> NOTE: Individual SMS sample text messages are located in the [data](data) directory of the local respoitory.
 
 From the **Access & Tools -> Documents** panel, press the **Upload Document Sets** button to import a **Document Set** file. Use the corpus documents file [data/corpus-8f342360-1c8f-11e8-9ded-ddbbc0ccb99a.zip](data/corpus-8f342360-1c8f-11e8-9ded-ddbbc0ccb99a.zip) found in the local repository.
 
@@ -251,7 +253,7 @@ Using cURL is the quickest way to show the advantages of WKS. Let's see the resu
 
 In the following examples, replace `username` and `password` with your own **NLU** credentials. In this first example, we will also be adding an `entites.model` argument to the query string. Replace this value with your own **WKS** model ID.
 
-The SMS text is URL encoded as it is passed as a query argument. Note that the model used to train and evaluate entities is based on a few sample SMS offers, which can be viewed in the [data/offers_msg.csv](data/offers_msg.csv) file.
+The SMS text is URL encoded as it is passed as a query argument. Note that the model used to train and evaluate entities is based on a few sample SMS offers, which are located in the [data](data) directory of the local repository.
 
 After issuing this cURL command, it is clear in the server response that we can see domain specific entities like `Offer`, `Offer_Period`, and `Merchant`.
 
@@ -382,6 +384,18 @@ mvn test
 ![](doc/source/images/deployed-app.png)
 
 # Troubleshooting
+
+### Errors associated with running the app:
+
+**Error:com.ibm.watson.developer_cloud.service.exception.UnauthorizedException: Unauthorized: Access is denied due to invalid credentials**
+
+> This should only occur if running locally. Check to ensure the credentials listed in `/src/main/resources/config.properties` matches the credentials assigned to your NLU service.
+
+**Error:com.ibm.watson.developer_cloud.service.exception.NotFoundException: model not found**
+
+> If running locally, check to ensure the **WATSON_KNOWLEDGE_STUDIO_MODEL_ID** listed in `/src/main/resources/config.properties` matches the the model ID you deployed to your NLU instance, as described in [Step #9](#9-deploy-the-machine-learning-model-to-nlu) above.
+
+> If you have deployed your app on the IBM Cloud, check to ensure the MODEL_ID environment variable in your runtime instance is set correctly, as described in the **Deploy to IBM Cloud** section of [Step #11](#11-run-the-application) above.
 
 # Learn more
 
