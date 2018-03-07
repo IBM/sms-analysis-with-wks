@@ -87,23 +87,18 @@ public class DemoServlet extends HttpServlet {
 			SimpleNLUClient client = new SimpleNLUClient();
 			client.initService(username, password, "");
 			AnalysisResults response = client.analyze(modelId,text);
-            if(response!=null)
-            {
-                resp.getWriter().println(response);
-            }
-            else
-            {
-                String errorResponse="There is no response from server, Please try again later";
-                resp.sendError(HttpStatus.SC_BAD_GATEWAY, errorResponse );
-            }
-
-			//resp.getWriter().println("{ \"language\": \"en\", \"entities\": [ { \"type\": \"Merchant\", \"text\": \"DUNKI DONUTS\", \"count\": 1 }, { \"type\": \"Location\", \"text\": \"Girgaum\", \"count\": 1 },"+
-			//" { \"type\": \"Offer\", \"text\": \"Get 3 FREE\", \"count\": 1 }, { \"type\": \"Offer_Period\", \"text\": \"Valid till 15 Feb 2017\", \"count\": 1 }, { \"type\": \"Term_and_Conditions\", \"text\": \"T&C\", \"count\": 1 } ] }");
-
+			if(response!=null)
+			{
+				resp.getWriter().println(response);
+			}
+			else
+			{
+				String errorResponse="There is no response from server, Please try again later";
+				resp.sendError(HttpStatus.SC_BAD_GATEWAY, errorResponse );
+			}
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Service error: " + e.getMessage(), e);
-            resp.sendError(HttpStatus.SC_BAD_GATEWAY, e.getMessage() );
-
+			resp.sendError(HttpStatus.SC_BAD_GATEWAY, e.getMessage() );
 		}
 	}
 
