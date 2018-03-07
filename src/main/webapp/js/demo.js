@@ -77,7 +77,6 @@ $(document).ready(function() {
       dataType: 'json',
       success: function(response) {
         $loading.hide();
-
         if (response.error) {
           showError(response.error);
         } else {
@@ -93,9 +92,10 @@ $(document).ready(function() {
 
         var error;
         try {
-          error = JSON.parse(xhr.responseText || {});
+          showError(xhr.responseText );
+
         } catch(e) {}
-        showError(error.error || error);
+
       }
     });
   });

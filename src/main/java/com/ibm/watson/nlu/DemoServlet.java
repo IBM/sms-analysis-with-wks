@@ -16,9 +16,7 @@
 package com.ibm.watson.nlu;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URI;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -89,65 +87,31 @@ public class DemoServlet extends HttpServlet {
 			SimpleNLUClient client = new SimpleNLUClient();
 			client.initService(username, password, "");
 			AnalysisResults response = client.analyze(modelId,text);
-			logger.info("Results:>> " + response);
-			resp.getWriter().println(response);
+            if(response!=null)
+            {
+                resp.getWriter().println(response);
+            }
+            else
+            {
+                String errorResponse="There is no response from server, Please try again later";
+                resp.sendError(HttpStatus.SC_BAD_GATEWAY, errorResponse );
+            }
+
 			//resp.getWriter().println("{ \"language\": \"en\", \"entities\": [ { \"type\": \"Merchant\", \"text\": \"DUNKI DONUTS\", \"count\": 1 }, { \"type\": \"Location\", \"text\": \"Girgaum\", \"count\": 1 },"+
 			//" { \"type\": \"Offer\", \"text\": \"Get 3 FREE\", \"count\": 1 }, { \"type\": \"Offer_Period\", \"text\": \"Valid till 15 Feb 2017\", \"count\": 1 }, { \"type\": \"Term_and_Conditions\", \"text\": \"T&C\", \"count\": 1 } ] }");
 
 		} catch (Exception e) {
-		    // Don't throw the error. Stuff it in an "Error" entity so the user can see it.
 			logger.log(Level.SEVERE, "Service error: " + e.getMessage(), e);
-			resp.getWriter().println("{ \"language\": \"en\", \"entities\": [ { \"type\": \"Error\", \"text\": \"" +
-					e.toString() + "\", \"count\": 1 } ] }");
+            resp.sendError(HttpStatus.SC_BAD_GATEWAY, e.getMessage() );
+
 		}
 	}
 
 	@Override
 	public void init() throws ServletException {
 		super.init();
-
-		if (! getConfigParams()) {
-			processVCAPServices();
-			modelId = System.getenv("MODEL_ID");
-
-			if (modelId == null) {
-				// if no model ID found, set it to a value that will 
-				// let the user know what the issue is
-				modelId = "no_model_id_found";
-			}
-			logger.info("modelId = " + modelId);
-		}
-	}
-
-	/**
-	 * If set, use user provided config params
-	 */
-	private boolean getConfigParams() {
-		logger.info("Processing config properties");
-		String configFile = "/config.properties";
-
-		try {
-			Properties props = new Properties();
-			props.load(this.getClass().getResourceAsStream(configFile));
-			username = props.getProperty("NATURAL_LANGUAGE_UNDERSTANDING_USERNAME");
-			password = props.getProperty("NATURAL_LANGUAGE_UNDERSTANDING_PASSWORD");
-			modelId = props.getProperty("WATSON_KNOWLEDGE_STUDIO_MODEL_ID");
-			logger.info("username = " + username);
-			logger.info("password = " + password);
-			logger.info("modelId = " + modelId);
-		} catch (Exception e) {
-			logger.log(Level.SEVERE, "Reading config properties error: " + e.getMessage(), e);
-			return false;
-		}
-
-		// if one isn't set, consider them all not set
-		if (username.equals("<add_nlu_username>") ||
-				password.equals("<add_nlu_password>") ||
-				modelId.equals("<add_model_id>")) {
-			return false;
-		}
-
-		return true;
+		processVCAPServices();
+		modelId = System.getenv("modelId");
 	}
 
 	/**
