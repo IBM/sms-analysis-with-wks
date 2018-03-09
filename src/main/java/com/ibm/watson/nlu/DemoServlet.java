@@ -119,7 +119,7 @@ public class DemoServlet extends HttpServlet {
 			logger.info("modelId = " + modelId);
 		}
 	}
-    /**
+	/**
 	 * If set, use user provided config params
 	 */
 	private boolean getConfigParams() {
@@ -146,9 +146,8 @@ public class DemoServlet extends HttpServlet {
 				modelId.equals("<add_model_id>")) {
 			return false;
 		}
-
 		return true;
-    }
+	}
 	/**
 	 * If exists, process the VCAP_SERVICES environment variable in order to get
 	 * the username, password and baseURL
