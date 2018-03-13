@@ -89,9 +89,8 @@ $(document).ready(function() {
       },
       error: function(xhr) {
         $loading.hide();
-
-        var error;
         try {
+
           showError(xhr.responseText );
 
         } catch(e) {}
@@ -107,7 +106,15 @@ $(document).ready(function() {
   function showError(error) {
     var defaultErrorMsg = 'Error processing the request, please try again later.';
     $error.show();
-    $errorMsg.text(error || defaultErrorMsg);
+    var errorResponse='';
+    if(error && error.indexOf("Error 502 :"))
+    {
+        errorResponse="Error:"+error.substring(11);
+    }
+    else {
+        errorResponse=error;
+    }
+    $errorMsg.text(errorResponse || defaultErrorMsg);
   }
 
   /**

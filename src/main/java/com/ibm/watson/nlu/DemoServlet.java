@@ -100,7 +100,7 @@ public class DemoServlet extends HttpServlet {
 			}
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Service error: " + e.getMessage(), e);
-			resp.sendError(HttpStatus.SC_BAD_GATEWAY, e.getMessage() );
+			resp.sendError(HttpStatus.SC_BAD_GATEWAY, e.toString() );
 		}
 	}
 
