@@ -77,7 +77,6 @@ $(document).ready(function() {
       dataType: 'json',
       success: function(response) {
         $loading.hide();
-
         if (response.error) {
           showError(response.error);
         } else {
@@ -90,12 +89,12 @@ $(document).ready(function() {
       },
       error: function(xhr) {
         $loading.hide();
-
-        var error;
         try {
-          error = JSON.parse(xhr.responseText || {});
+
+          showError(xhr.responseText );
+
         } catch(e) {}
-        showError(error.error || error);
+
       }
     });
   });
@@ -107,7 +106,15 @@ $(document).ready(function() {
   function showError(error) {
     var defaultErrorMsg = 'Error processing the request, please try again later.';
     $error.show();
-    $errorMsg.text(error || defaultErrorMsg);
+    var errorResponse='';
+    if(error && error.indexOf("Error 502 :"))
+    {
+        errorResponse="Error:"+error.substring(11);
+    }
+    else {
+        errorResponse=error;
+    }
+    $errorMsg.text(errorResponse || defaultErrorMsg);
   }
 
   /**
