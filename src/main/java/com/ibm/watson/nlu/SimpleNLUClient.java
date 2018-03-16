@@ -55,6 +55,7 @@ public class SimpleNLUClient {
 	            .returnAnalyzedText(true);
 		//builder.text("We Miss U @Sree; Order Ur Fav Pizza Now; Buy 1 Regular Pizza & Get 40% OFF. Walk-In/Order@ 68886888/ goo.gl/CQThqp Cpn: CRM7BEA217E4F Valid till 21 Mar T&C");
 		builder.text(smsText);
+		builder.language("en");
 	 	AnalyzeOptions parameters = builder.build();
 		return service.analyze(parameters).execute();
 
