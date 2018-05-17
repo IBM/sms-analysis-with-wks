@@ -1,7 +1,7 @@
 ---
 declared-services:
   sms_nlu_service:
-    label: natural-language-understanding
+    label: sms_nlu_service
     plan: free
 applications:
 - name: cognitive-sms-client
