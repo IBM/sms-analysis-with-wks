@@ -46,7 +46,7 @@ public class DemoServlet extends HttpServlet {
 	private static Logger logger = Logger.getLogger(DemoServlet.class.getName());
 	private static final long serialVersionUID = 1L;
 
-	private String serviceName = "natural-language-understanding";
+	private String serviceName = "sms_nlu_service";
 
 	// If running locally complete the variables below
 	// with the information in VCAP_SERVICES
