@@ -80,6 +80,8 @@ public class DemoServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 
+		resp.setContentType("application/json; charset=UTF-8");
+
 		// create the request
 		String text = req.getParameter("text");
 		String language = req.getParameter("language");
