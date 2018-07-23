@@ -75,6 +75,7 @@ $(document).ready(function() {
       },
       url: 'demo',
       dataType: 'json',
+      contentType:"application/x-www-form-urlencoded; charset=UTF-8",
       success: function(response) {
         $loading.hide();
         if (response.error) {
@@ -175,9 +176,11 @@ $(document).ready(function() {
     var div = $('.summary-div');
     $('.outputWordCountMessage').text(data.word_count_message ? '**' + data.word_count_message + '.' : '');
     div.empty();
+
     paragraphs.forEach(function(sentences) {
       $('<p></p>').text(sentences.type+":"+sentences.text).appendTo(div);
     });
+
   }
 
 /**
