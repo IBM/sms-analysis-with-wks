@@ -57,7 +57,7 @@ In short, a type system is built and supporting documents are uploaded that have
 
 # Watch the Video
 
-TBD!
+[![](http://img.youtube.com/vi/lwW97UQj0RM/0.jpg)](https://youtu.be/lwW97UQj0RM)
 
 # Steps
 
