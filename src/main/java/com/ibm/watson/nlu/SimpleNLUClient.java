@@ -11,6 +11,7 @@ import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.En
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.Features;
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.ListModelsResults;
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.AnalyzeOptions.Builder;
+import com.ibm.watson.developer_cloud.service.security.IamOptions;
 
 public class SimpleNLUClient {
 
@@ -18,21 +19,30 @@ public class SimpleNLUClient {
 	private int maxResponses = Integer.MAX_VALUE;  // maximum # of responses to return, default value
 
 
-	public void initService(String userName,String password, String optionalURL){
+	public void initService(String userName, String password, String optionalURL){
 		service = null;
 		if(optionalURL !="")
 		{
-				service= new NaturalLanguageUnderstanding( NaturalLanguageUnderstanding.VERSION_DATE_2017_02_27);
+				service= new NaturalLanguageUnderstanding("2018-03-16");
 				service.setApiKey("");
 				service.setEndPoint(optionalURL);
 		}
 		else
 		{
-			service= new NaturalLanguageUnderstanding( NaturalLanguageUnderstanding.VERSION_DATE_2017_02_27,userName,password);
+			service= new NaturalLanguageUnderstanding("2018-03-16", userName, password);
 		}
 
 	}
 
+	public void initIamService(String apikey, String url){
+		service = null;
+		IamOptions options = new IamOptions.Builder()
+			.apiKey(apikey)
+			.build();
+
+		service= new NaturalLanguageUnderstanding("2018-03-16", options);
+		service.setEndPoint(url);
+	}
 
 	public SimpleNLUClient(){
 

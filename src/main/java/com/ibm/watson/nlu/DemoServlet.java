@@ -53,7 +53,9 @@ public class DemoServlet extends HttpServlet {
 	private String baseURL = "<url>";
 	private String username = "<username>";
 	private String password = "<password>";
+	private String apikey = "<apikey>";
 	private String modelId = "";
+	private boolean useIamApiKey = true;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -89,7 +91,12 @@ public class DemoServlet extends HttpServlet {
 
 		try {
 			SimpleNLUClient client = new SimpleNLUClient();
-			client.initService(username, password, "");
+			if (useIamApiKey) {
+				client.initIamService(apikey, baseURL);
+			} else {
+				client.initService(username, password, baseURL);
+			}
+
 			AnalysisResults response = client.analyze(modelId,text);
 			if(response!=null)
 			{
@@ -131,9 +138,13 @@ public class DemoServlet extends HttpServlet {
 		try {
 			Properties props = new Properties();
 			props.load(this.getClass().getResourceAsStream(configFile));
+			baseURL = props.getProperty("NATURAL_LANGUAGE_UNDERSTANDING_URL");
+			apikey = props.getProperty("NATURAL_LANGUAGE_UNDERSTANDING_IAM_APIKEY");
 			username = props.getProperty("NATURAL_LANGUAGE_UNDERSTANDING_USERNAME");
 			password = props.getProperty("NATURAL_LANGUAGE_UNDERSTANDING_PASSWORD");
 			modelId = props.getProperty("WATSON_KNOWLEDGE_STUDIO_MODEL_ID");
+			logger.info("baseURL = " + baseURL);
+			logger.info("apikey = " + apikey);
 			logger.info("username = " + username);
 			logger.info("password = " + password);
 			logger.info("modelId = " + modelId);
@@ -142,12 +153,26 @@ public class DemoServlet extends HttpServlet {
 			return false;
 		}
 
-		// if one isn't set, consider them all not set
-		if (username.equals("<add_nlu_username>") ||
-				password.equals("<add_nlu_password>") ||
-				modelId.equals("<add_model_id>")) {
+		// make sure we have what we need
+		if (modelId.equals("<add_model_id>")) {
 			return false;
 		}
+
+		if (baseURL.equals("<add_nlu_url>")) {
+			return false;
+		}
+
+		if ((apikey.equals("add_nlu_iam_apikey")) &&
+			(username.equals("<add_nlu_username>") || password.equals("<add_nlu_password>"))) {
+			return false;
+		}
+
+		if (apikey.equals("add_nlu_iam_apikey")) {
+			useIamApiKey = false;
+		}
+
+		logger.info("using IAM_APIKEY = " + useIamApiKey);
+
 		return true;
 	}
 	/**
@@ -170,11 +195,17 @@ public class DemoServlet extends HttpServlet {
 				JSONObject credentials = (JSONObject) service
 						.get("credentials");
 				baseURL = (String) credentials.get("url");
+				apikey = (String) credentials.get("apikey");
 				username = (String) credentials.get("username");
 				password = (String) credentials.get("password");
+				if (apikey == null || apikey.isEmpty())) {
+					useIamApiKey = false;
+				}
 				logger.info("baseURL  = " + baseURL);
+				logger.info("apikey = " + apikey);
 				logger.info("username = " + username);
 				logger.info("password = " + password);
+				logger.info("using IAM_APIKEY = " + useIamApiKey);
 			} else {
 				logger.info("Doesn't match /^" + serviceName + "/");
 			}

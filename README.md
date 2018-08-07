@@ -405,12 +405,18 @@ To download and install maven, refer to [maven.](https://maven.apache.org/downlo
 
 #### Add NLU Credentials and WKS Model ID to config.properties file
 
-The config.properties file is located in the `src/main/resources` directory. Replace the default values with the appropriate credentials and model ID values (quotes are not required).
+The config.properties file is located in the `src/main/resources` directory. Replace the default values with the appropriate credentials (either IAM apikey, or username/password) and model ID values (quotes are not required).
 
 ```
-NATURAL_LANGUAGE_UNDERSTANDING_USERNAME = <add_nlu_username>
-NATURAL_LANGUAGE_UNDERSTANDING_PASSWORD = <add_nlu_password>
-WATSON_KNOWLEDGE_STUDIO_MODEL_ID = <add_model_id>
+# Watson Natural Language Understanding
+NATURAL_LANGUAGE_UNDERSTANDING_URL=https://gateway.watsonplatform.net/natural-language-understanding/api
+## Un-comment and use either username+password or IAM apikey.
+NATURAL_LANGUAGE_UNDERSTANDING_IAM_APIKEY=<add_nlu_iam_apikey>
+#NATURAL_LANGUAGE_UNDERSTANDING_USERNAME=<add_nlu_username>
+#NATURAL_LANGUAGE_UNDERSTANDING_PASSWORD=<add_nlu_password>
+
+# Watson Knowledge Studio Model ID
+WATSON_KNOWLEDGE_STUDIO_MODEL_ID=<add_model_id>
 ```
 
 #### Build and Run
