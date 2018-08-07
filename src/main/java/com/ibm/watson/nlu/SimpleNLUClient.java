@@ -17,19 +17,20 @@ public class SimpleNLUClient {
 
 	private NaturalLanguageUnderstanding service;
 	private int maxResponses = Integer.MAX_VALUE;  // maximum # of responses to return, default value
+	private String versionDate = "2018-03-16";
 
 
 	public void initService(String userName, String password, String optionalURL){
 		service = null;
 		if(optionalURL !="")
 		{
-				service= new NaturalLanguageUnderstanding("2018-03-16");
+				service= new NaturalLanguageUnderstanding(versionDate);
 				service.setApiKey("");
 				service.setEndPoint(optionalURL);
 		}
 		else
 		{
-			service= new NaturalLanguageUnderstanding("2018-03-16", userName, password);
+			service= new NaturalLanguageUnderstanding(versionDate, userName, password);
 		}
 
 	}
@@ -40,7 +41,7 @@ public class SimpleNLUClient {
 			.apiKey(apikey)
 			.build();
 
-		service= new NaturalLanguageUnderstanding("2018-03-16", options);
+		service= new NaturalLanguageUnderstanding(versionDate, options);
 		service.setEndPoint(url);
 	}
 

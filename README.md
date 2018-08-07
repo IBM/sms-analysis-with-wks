@@ -136,9 +136,12 @@ From the **Access & Tools -> Documents** panel, press the **Create Annotation Se
 
 ## 7. Create a Task for Human Annotation
 
+> Note: With the latest release of Watson Knowledge Studio, most of the remainig steps below reference menu actions that have been moved. There is a new **Machine Learning Model** menu item that has been added to the left side of the UI panel. It contains actions associated with **Tasks** (now referred to as **Annotation Tasks**), **Performance**, and **Versions**. Please keep this in mind as you navigate the following steps.
+
 Add a task for human annotation by creating a task and assigning it annotation sets.
 
 From the **Access & Tools -> Documents** panel, select the **Task** tab and press the **Add Task** button.
+
 
 ![](doc/source/images/wks/task-2-create_task.png)
 
@@ -405,7 +408,7 @@ To download and install maven, refer to [maven.](https://maven.apache.org/downlo
 
 #### Add NLU Credentials and WKS Model ID to config.properties file
 
-The config.properties file is located in the `src/main/resources` directory. Replace the default values with the appropriate credentials (either IAM apikey, or username/password) and model ID values (quotes are not required).
+The config.properties file is located in the `src/main/resources` directory. Replace the default values with the appropriate credentials (either API key, or username/password) and model ID values (quotes are not required).
 
 ```
 # Watson Natural Language Understanding

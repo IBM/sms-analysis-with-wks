@@ -171,7 +171,7 @@ public class DemoServlet extends HttpServlet {
 			useIamApiKey = false;
 		}
 
-		logger.info("using IAM_APIKEY = " + useIamApiKey);
+		logger.info("using apikey = " + useIamApiKey);
 
 		return true;
 	}
@@ -205,7 +205,7 @@ public class DemoServlet extends HttpServlet {
 				logger.info("apikey = " + apikey);
 				logger.info("username = " + username);
 				logger.info("password = " + password);
-				logger.info("using IAM_APIKEY = " + useIamApiKey);
+				logger.info("using apikey = " + useIamApiKey);
 			} else {
 				logger.info("Doesn't match /^" + serviceName + "/");
 			}
