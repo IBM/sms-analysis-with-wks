@@ -198,7 +198,7 @@ public class DemoServlet extends HttpServlet {
 				apikey = (String) credentials.get("apikey");
 				username = (String) credentials.get("username");
 				password = (String) credentials.get("password");
-				if (apikey == null || apikey.isEmpty())) {
+				if (apikey == null || apikey.isEmpty()) {
 					useIamApiKey = false;
 				}
 				logger.info("baseURL  = " + baseURL);
