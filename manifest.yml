@@ -8,7 +8,7 @@ applications:
   memory: 256M
   path: target/NLUApp.war
   disk_quota: 1024M
-  random-route: true
+  random-route: false
   buildpack: liberty-for-java
   services:
   - sms_nlu_service

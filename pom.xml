@@ -26,9 +26,9 @@
 		</developer>
 	</developers>
 	<scm>
-		<connection>scm:git:git@github.com/ragudiko/wks-nlu-sms-analysis.git</connection>
-		<developerConnection>scm:git:git@github.com/ragudiko/wks-nlu-sms-analysis.git</developerConnection>
-		<url>git@github.com/ragudiko/wks-nlu-sms-analysis.git</url>
+		<connection>scm:git:git@github.com/IBM/sms-analysis-with-wks.git</connection>
+		<developerConnection>scm:git:git@github.com/IBM/sms-analysis-with-wks.git</developerConnection>
+		<url>git@github.com/IBM/sms-analysis-with-wks.git</url>
 	</scm>
 
 <distributionManagement>
@@ -151,8 +151,8 @@
   	<dependency>
   		<groupId>com.ibm.watson.developer_cloud</groupId>
   		<artifactId>java-sdk</artifactId>
-  		<version>3.8.0</version>
-  	</dependency>
+			<version>6.2.0</version>
+		</dependency>
   	<dependency>
   		<groupId>junit</groupId>
   		<artifactId>junit</artifactId>
