@@ -1,6 +1,6 @@
 ---
 declared-services:
-  sms_nlu_service:
+  sms-nlu-service:
     label: natural-language-understanding
     plan: free
 applications:
@@ -11,6 +11,6 @@ applications:
   random-route: false
   buildpack: liberty-for-java
   services:
-  - sms_nlu_service
+  - sms-nlu-service
 env:
   MODEL_ID: placeholder

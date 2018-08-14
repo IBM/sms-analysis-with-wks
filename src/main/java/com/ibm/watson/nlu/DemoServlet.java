@@ -55,7 +55,7 @@ public class DemoServlet extends HttpServlet {
 	private String password = "<password>";
 	private String apikey = "<apikey>";
 	private String modelId = "";
-	private boolean useIamApiKey = true;
+	private boolean useIamApiKey = false;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -128,6 +128,19 @@ public class DemoServlet extends HttpServlet {
 			logger.info("modelId = " + modelId);
 		}
 	}
+
+	/**
+	 * Value is considered entered if it is set, and doesn't equal the placeholder value
+	 */
+	private boolean keyValueEntered(key, value) {
+		if (value && (!value.startsWith("add_")) {
+			logger.info(key + " has been set to: " + value);
+			return true;
+		}
+		logger.info(key + " has NOT been set");
+		return false;
+	}
+
 	/**
 	 * If set, use user provided config params
 	 */
@@ -143,32 +156,31 @@ public class DemoServlet extends HttpServlet {
 			username = props.getProperty("NATURAL_LANGUAGE_UNDERSTANDING_USERNAME");
 			password = props.getProperty("NATURAL_LANGUAGE_UNDERSTANDING_PASSWORD");
 			modelId = props.getProperty("WATSON_KNOWLEDGE_STUDIO_MODEL_ID");
-			logger.info("baseURL = " + baseURL);
-			logger.info("apikey = " + apikey);
-			logger.info("username = " + username);
-			logger.info("password = " + password);
-			logger.info("modelId = " + modelId);
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Reading config properties error: " + e.getMessage(), e);
 			return false;
 		}
 
 		// make sure we have what we need
-		if (modelId.equals("<add_model_id>")) {
+
+		// always need model id
+		if (!keyValueEntered("config-modelId", modelId)) {
 			return false;
 		}
 
-		if (baseURL.equals("<add_nlu_url>")) {
+		// always need nlu url
+		if (!keyValueEntered("config-baseURL", baseURL)) {
 			return false;
 		}
 
-		if ((apikey.equals("add_nlu_iam_apikey")) &&
-			(username.equals("<add_nlu_username>") || password.equals("<add_nlu_password>"))) {
+		// need at least one type of credential
+		if (!keyValueEntered("config-apikey", apikey) &&
+			(!keyValueEntered("config-uname", username) || (!keyValueEntered("config-pwd", password)))) {
 			return false;
 		}
 
-		if (apikey.equals("add_nlu_iam_apikey")) {
-			useIamApiKey = false;
+		if (keyValueEntered("config-apikey", apikey)) {
+			useIamApiKey = true;
 		}
 
 		logger.info("using apikey = " + useIamApiKey);
@@ -194,18 +206,19 @@ public class DemoServlet extends HttpServlet {
 				JSONObject service = (JSONObject) services.get(0);
 				JSONObject credentials = (JSONObject) service
 						.get("credentials");
+				logger.info("VCAP: " + credentials);
 				baseURL = (String) credentials.get("url");
 				apikey = (String) credentials.get("apikey");
 				username = (String) credentials.get("username");
 				password = (String) credentials.get("password");
-				if (apikey == null || apikey.isEmpty()) {
-					useIamApiKey = false;
+				if (keyValueEntered("vcap-apikey", apikey)) {
+					useIamApiKey = true;
 				}
-				logger.info("baseURL  = " + baseURL);
-				logger.info("apikey = " + apikey);
-				logger.info("username = " + username);
-				logger.info("password = " + password);
-				logger.info("using apikey = " + useIamApiKey);
+				logger.info("vcap-baseURL  = " + baseURL);
+				logger.info("vcap-apikey = " + apikey);
+				logger.info("vcap-username = " + username);
+				logger.info("vcap-password = " + password);
+				logger.info("vcap-using apikey = " + useIamApiKey);
 			} else {
 				logger.info("Doesn't match /^" + serviceName + "/");
 			}
