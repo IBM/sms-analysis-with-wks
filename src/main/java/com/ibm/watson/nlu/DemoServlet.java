@@ -132,8 +132,8 @@ public class DemoServlet extends HttpServlet {
 	/**
 	 * Value is considered entered if it is set, and doesn't equal the placeholder value
 	 */
-	private boolean keyValueEntered(key, value) {
-		if (value && (!value.startsWith("add_"))) {
+	private boolean keyValueEntered(String key, String value) {
+		if ((value != null) && (!value.isEmpty()) && (!value.startsWith("add_"))) {
 			logger.info(key + " has been set to: " + value);
 			return true;
 		}
