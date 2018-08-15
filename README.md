@@ -254,15 +254,20 @@ Using cURL is the quickest way to show the advantages of WKS. Let's see the resu
 
 ### NLU with a WKS model
 
-In the following examples, replace `username` and `password` with your own **NLU** credentials. In this first example, we will also be adding an `entites.model` argument to the query string. Replace this value with your own **WKS** model ID.
+In the following examples, replace `$USERNAME` and `$PASSWORD` (or `$APIKEY`) with your own **NLU** credentials. In this first example, we will also be adding an `entites.model` argument to the query string. Replace `$MODEL_ID` with your own **WKS** model ID.
 
 The SMS text is URL encoded as it is passed as a query argument. Note that the model used to train and evaluate entities is based on a few sample SMS offers, which are located in the [data](data) directory of the local repository.
 
 After issuing this cURL command, it is clear in the server response that we can see domain specific entities like `Offer`, `Offer_Period`, and `Merchant`.
 
+> Note: If using IAM apikeys for authentication, replace the first line in the curl command with: 
 ```
-curl -u "$username":"$password" \
-"https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2017-02-27&text=Valentines%20Day%20Offer%2c%20get%20Rs.10000%20cashback%20%2b%20No%20Cost%20EMI%20on%20all%20models%20of%20iPad.%20Valid%20till%20Feb%2014%20at%20your%20nearest%20Imagine.%20https%3a%2f%2fgoo.gl%2fhFJcfk&features=entities&entities.model=10:7907e3c0-44ba-42be-8f4f-5eff5a83a324"
+curl -u "apikey":"$APIKEY" \
+```
+
+```
+curl -u "$USERNAME":"$PASSWORD" \
+"https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2018-03-16&text=Valentines%20Day%20Offer%2c%20get%20Rs.10000%20cashback%20%2b%20No%20Cost%20EMI%20on%20all%20models%20of%20iPad.%20Valid%20till%20Feb%2014%20at%20your%20nearest%20Imagine.%20https%3a%2f%2fgoo.gl%2fhFJcfk&features=entities&entities.model=$MODEL_ID"
 
 {
   "usage": {
@@ -341,8 +346,8 @@ curl -u "$username":"$password" \
 Using **NLU** without a **WKS** model ID is less ideal, as the server does not extract the entities we are looking for. It extracts generic data such as company name and some location details, but it does not extract the domain specific offer details we desire.
 
 ```
-curl -u "$username":"$password" \
-"https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2017-02-27&text=Valentines%20Day%20Offer%2c%20get%20Rs.10000%20cashback%20%2b%20No%20Cost%20EMI%20on%20all%20models%20of%20iPad.%20Valid%20till%20Feb%2014%20at%20your%20nearest%20Imagine.%20https%3a%2f%2fgoo.gl%2fhFJcfk&features=entities"
+curl -u "$USERNAME":"$PASSWORD" \
+"https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2018-03-16&text=Valentines%20Day%20Offer%2c%20get%20Rs.10000%20cashback%20%2b%20No%20Cost%20EMI%20on%20all%20models%20of%20iPad.%20Valid%20till%20Feb%2014%20at%20your%20nearest%20Imagine.%20https%3a%2f%2fgoo.gl%2fhFJcfk&features=entities"
 
 {
   "usage": {
