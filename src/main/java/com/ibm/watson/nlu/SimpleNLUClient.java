@@ -5,7 +5,6 @@
 package com.ibm.watson.nlu;
 
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.NaturalLanguageUnderstanding;
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.AnalysisResults;
@@ -18,7 +17,6 @@ import com.ibm.watson.developer_cloud.service.security.IamOptions;
 
 public class SimpleNLUClient {
 
-	private static Logger logger = Logger.getLogger(SimpleNLUClient.class.getName());
 	private NaturalLanguageUnderstanding service;
 	private int maxResponses = Integer.MAX_VALUE;  // maximum # of responses to return, default value
 	private String versionDate = "2018-03-16";
@@ -26,17 +24,14 @@ public class SimpleNLUClient {
 
 	public void initService(String userName, String password, String optionalURL){
 		service = null;
-		logger.info("create NLU service with uname/pwd");
 		service= new NaturalLanguageUnderstanding(versionDate, userName, password);
 		if(optionalURL !="")
 		{
 				service.setEndPoint(optionalURL);
-				logger.info("set endpoint to: " + optionalURL);
 		}
 	}
 
 	public void initIamService(String apikey, String url){
-		logger.info("create NLU service with apikey");
 		service = null;
 		IamOptions options = new IamOptions.Builder()
 			.apiKey(apikey)
@@ -44,7 +39,6 @@ public class SimpleNLUClient {
 
 		service= new NaturalLanguageUnderstanding(versionDate, options);
 		service.setEndPoint(url);
-		logger.info("set endpoint to: " + url);
 	}
 
 	public SimpleNLUClient(){
