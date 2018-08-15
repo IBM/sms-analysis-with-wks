@@ -260,7 +260,7 @@ The SMS text is URL encoded as it is passed as a query argument. Note that the m
 
 After issuing this cURL command, it is clear in the server response that we can see domain specific entities like `Offer`, `Offer_Period`, and `Merchant`.
 
-> Note: If using IAM apikeys for authentication, replace the first line in the curl command with: 
+> Note: If using an IAM API key for authentication, replace the first line in the curl command with: 
 ```
 curl -u "apikey":"$APIKEY" \
 ```
