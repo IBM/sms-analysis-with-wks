@@ -4,6 +4,8 @@
 
 package com.ibm.watson.nlu;
 
+import java.util.logging.Level;
+
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.NaturalLanguageUnderstanding;
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.AnalysisResults;
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.AnalyzeOptions;
@@ -22,17 +24,11 @@ public class SimpleNLUClient {
 
 	public void initService(String userName, String password, String optionalURL){
 		service = null;
+		service= new NaturalLanguageUnderstanding(versionDate, userName, password);
 		if(optionalURL !="")
 		{
-				service= new NaturalLanguageUnderstanding(versionDate);
-				service.setApiKey("");
 				service.setEndPoint(optionalURL);
 		}
-		else
-		{
-			service= new NaturalLanguageUnderstanding(versionDate, userName, password);
-		}
-
 	}
 
 	public void initIamService(String apikey, String url){
