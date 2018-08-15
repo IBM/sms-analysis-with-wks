@@ -1,16 +1,16 @@
 ---
 declared-services:
-  rhagarty-sms-nlu-service:
+  sms-nlu-service:
     label: natural-language-understanding
     plan: free
 applications:
-- name: rhagarty-cognitive-sms-client
+- path: target/NLUApp.war
+  name: cognitive-sms-client
   memory: 256M
-  path: target/NLUApp.war
   disk_quota: 1024M
   random-route: false
   buildpack: liberty-for-java
   services:
-  - rhagarty-sms-nlu-service
+  - sms-nlu-service
 env:
   MODEL_ID: placeholder
