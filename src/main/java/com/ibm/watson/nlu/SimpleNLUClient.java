@@ -27,7 +27,7 @@ public class SimpleNLUClient {
 		service= new NaturalLanguageUnderstanding(versionDate, userName, password);
 		if(optionalURL !="")
 		{
-				service.setEndPoint(optionalURL);
+			service.setEndPoint(optionalURL);
 		}
 	}
 
@@ -56,21 +56,13 @@ public class SimpleNLUClient {
 
 		Features features = new Features.Builder().entities(entities).build();
 
-
 		Builder builder = new AnalyzeOptions.Builder()
 	            .features(features)
 	            .returnAnalyzedText(true);
-		//builder.text("We Miss U @Sree; Order Ur Fav Pizza Now; Buy 1 Regular Pizza & Get 40% OFF. Walk-In/Order@ 68886888/ goo.gl/CQThqp Cpn: CRM7BEA217E4F Valid till 21 Mar T&C");
 		builder.text(smsText);
 		builder.language("en");
 	 	AnalyzeOptions parameters = builder.build();
 		return service.analyze(parameters).execute();
 
 	}
-	/*public static void main(String a[]){
-		SimpleNLUClient client = new SimpleNLUClient();
-		client.initService("de40afab-f410-4012-bb00-2d878ffc18f2", "oclD356nMDxV", "");
-		AnalysisResults response = client.analyze("10:8a91f680-4eb0-4c7b-b37e-193bb124bc18","Get 1+1 on booking Cinepolis Cinemas tickets on XYZ. Use code: LOVEFEB to avail the offer. Max. Cashback* Rs.500. Click http://m.p-y.tm/mcn. *T&C apply");
-		System.out.println("Result:"+response);
-	}*/
 }
