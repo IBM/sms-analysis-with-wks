@@ -92,8 +92,15 @@ public class DemoServlet extends HttpServlet {
 		try {
 			SimpleNLUClient client = new SimpleNLUClient();
 			if (useIamApiKey) {
+				logger.info("create NLU service using apikey");
+				logger.info("   apikey: " + apikey);
+				logger.info("   endpoint: " + baseURL);
 				client.initIamService(apikey, baseURL);
 			} else {
+				logger.info("create NLU service using uname/pwd");
+				logger.info("   username: " + username);
+				logger.info("   password: " + password);
+				logger.info("   endpoint: " + baseURL);
 				client.initService(username, password, baseURL);
 			}
 
