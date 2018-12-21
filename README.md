@@ -83,8 +83,8 @@ $ git clone https://github.com/IBM/sms-analysis-with-wks
 
 Create the following services:
 
-* [**Watson Natural Language Understanding**](https://console.bluemix.net/catalog/services/natural-language-understanding)
-* [**Watson Knowledge Studio**](https://console.bluemix.net/catalog/services/knowledge-studio)
+* [**Watson Natural Language Understanding**](https://cloud.ibm.com/catalog/services/natural-language-understanding)
+* [**Watson Knowledge Studio**](https://cloud.ibm.com/catalog/services/knowledge-studio)
 
 > NOTE: It is recommended that you name your NLU service `sms-nlu-service`. This will eliminate some steps if you eventually decide to deploy your app to the IBM Cloud. 
 
@@ -378,7 +378,7 @@ Use the ``Deploy to IBM Cloud`` button **OR** run locally.
 
 ### Deploy to IBM Cloud
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/sms-analysis-with-wks)
+[![Deploy to Bluemix](https://cloud.ibm.com/deploy/button.png)](https://cloud.ibm.com/devops/setup/deploy?repository=https://github.com/IBM/sms-analysis-with-wks)
 
 1. Press the above ``Deploy to IBM Cloud`` button and then click on ``Deploy``.
 
