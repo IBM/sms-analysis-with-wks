@@ -1,6 +1,6 @@
 # Analyzing SMS messages with Watson Knowledge Studio
 
-![Build Status](https://travis-ci.org/IBM/sms-analysis-with-wks.svg?branch=master)
+![Build Status](https://api.travis-ci.org/IBM/sms-analysis-with-wks.svg?branch=master)
 
 This code pattern describes how to analyze SMS messages with Watson Knowledge Studio (WKS) and Watson's Natural Language Understanding (NLU) capability to extract entities in the data. Current natural language processing techniques cannot extract or interpret data that is domain or industry specific because entities have different meanings in different domains. The best answer to such a problem is IBM's Watson Knowledge Studio. Consider a case where we need to extract entities present in a commercial SMS. For example:
 
@@ -57,7 +57,7 @@ In short, a type system is built and supporting documents are uploaded that have
 
 # Watch the Video
 
-[![](http://img.youtube.com/vi/lwW97UQj0RM/0.jpg)](https://youtu.be/lwW97UQj0RM)
+[![](https://img.youtube.com/vi/lwW97UQj0RM/0.jpg)](https://youtu.be/lwW97UQj0RM)
 
 # Steps
 
@@ -83,8 +83,8 @@ $ git clone https://github.com/IBM/sms-analysis-with-wks
 
 Create the following services:
 
-* [**Watson Natural Language Understanding**](https://console.bluemix.net/catalog/services/natural-language-understanding)
-* [**Watson Knowledge Studio**](https://console.bluemix.net/catalog/services/knowledge-studio)
+* [**Watson Natural Language Understanding**](https://cloud.ibm.com/catalog/services/natural-language-understanding)
+* [**Watson Knowledge Studio**](https://cloud.ibm.com/catalog/services/knowledge-studio)
 
 > NOTE: It is recommended that you name your NLU service `sms-nlu-service`. This will eliminate some steps if you eventually decide to deploy your app to the IBM Cloud. 
 
@@ -378,7 +378,7 @@ Use the ``Deploy to IBM Cloud`` button **OR** run locally.
 
 ### Deploy to IBM Cloud
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/sms-analysis-with-wks)
+[![Deploy to Bluemix](https://cloud.ibm.com/devops/setup/deploy/button.png)](https://cloud.ibm.com/devops/setup/deploy?repository=https://github.com/IBM/sms-analysis-with-wks)
 
 1. Press the above ``Deploy to IBM Cloud`` button and then click on ``Deploy``.
 
@@ -466,13 +466,13 @@ mvn test
 
 # Learn more
 
-* **Artificial Intelligence Code Patterns**: Enjoyed this Code Pattern? Check out our other [AI Code Patterns](https://developer.ibm.com/code/technologies/artificial-intelligence/).
+* **Artificial Intelligence Code Patterns**: Enjoyed this Code Pattern? Check out our other [AI Code Patterns](https://developer.ibm.com/technologies/artificial-intelligence/).
 * **AI and Data Code Pattern Playlist**: Bookmark our [playlist](https://www.youtube.com/playlist?list=PLzUbsvIyrNfknNewObx5N7uGZ5FKH0Fde) with all of our Code Pattern videos
 * **With Watson**: Want to take your Watson app to the next level? Looking to utilize Watson Brand assets? [Join the With Watson program](https://www.ibm.com/watson/with-watson/) to leverage exclusive brand, marketing, and tech resources to amplify and accelerate your Watson embedded commercial solution.
 * [Procurement Analysis with WKS](https://github.com/IBM/procurement-analysis-with-wks): Another code pattern that is focused on a procurement use case where WKS is used with Discovery and IBM Graph.
 
 # License
 
-This code pattern is licensed under the Apache Software License, Version 2.  Separate third party code objects invoked within this code pattern are licensed by their respective providers pursuant to their own separate licenses. Contributions are subject to the [Developer Certificate of Origin, Version 1.1 (DCO)](https://developercertificate.org/) and the [Apache Software License, Version 2](http://www.apache.org/licenses/LICENSE-2.0.txt).
+This code pattern is licensed under the Apache Software License, Version 2.  Separate third party code objects invoked within this code pattern are licensed by their respective providers pursuant to their own separate licenses. Contributions are subject to the [Developer Certificate of Origin, Version 1.1 (DCO)](https://developercertificate.org/) and the [Apache Software License, Version 2](https://www.apache.org/licenses/LICENSE-2.0.txt).
 
-[Apache Software License (ASL) FAQ](http://www.apache.org/foundation/license-faq.html#WhatDoesItMEAN)
+[Apache Software License (ASL) FAQ](https://www.apache.org/foundation/license-faq.html#WhatDoesItMEAN)
