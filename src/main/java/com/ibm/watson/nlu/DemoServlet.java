@@ -53,7 +53,9 @@ public class DemoServlet extends HttpServlet {
 	private String baseURL = "<url>";
 	private String username = "<username>";
 	private String password = "<password>";
+	private String apikey = "<apikey>";
 	private String modelId = "";
+	private boolean useIamApiKey = false;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -80,6 +82,8 @@ public class DemoServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 
+		resp.setContentType("application/json; charset=UTF-8");
+
 		// create the request
 		String text = req.getParameter("text");
 		String language = req.getParameter("language");
@@ -87,36 +91,61 @@ public class DemoServlet extends HttpServlet {
 
 		try {
 			SimpleNLUClient client = new SimpleNLUClient();
-			client.initService(username, password, "");
-			AnalysisResults response = client.analyze(modelId,text);
-			logger.info("Results:>> " + response);
-			resp.getWriter().println(response);
-			//resp.getWriter().println("{ \"language\": \"en\", \"entities\": [ { \"type\": \"Merchant\", \"text\": \"DUNKI DONUTS\", \"count\": 1 }, { \"type\": \"Location\", \"text\": \"Girgaum\", \"count\": 1 },"+
-			//" { \"type\": \"Offer\", \"text\": \"Get 3 FREE\", \"count\": 1 }, { \"type\": \"Offer_Period\", \"text\": \"Valid till 15 Feb 2017\", \"count\": 1 }, { \"type\": \"Term_and_Conditions\", \"text\": \"T&C\", \"count\": 1 } ] }");
+			if (useIamApiKey) {
+				logger.info("create NLU service using apikey");
+				logger.info("   apikey: " + apikey);
+				logger.info("   endpoint: " + baseURL);
+				client.initIamService(apikey, baseURL);
+			} else {
+				logger.info("create NLU service using uname/pwd");
+				logger.info("   username: " + username);
+				logger.info("   password: " + password);
+				logger.info("   endpoint: " + baseURL);
+				client.initService(username, password, baseURL);
+			}
 
+			AnalysisResults response = client.analyze(modelId,text);
+			if(response!=null)
+			{
+				resp.getWriter().println(response);
+			}
+			else
+			{
+				String errorResponse="There is no response from server, Please try again later";
+				resp.sendError(HttpStatus.SC_BAD_GATEWAY, errorResponse );
+			}
 		} catch (Exception e) {
-		    // Don't throw the error. Stuff it in an "Error" entity so the user can see it.
 			logger.log(Level.SEVERE, "Service error: " + e.getMessage(), e);
-			resp.getWriter().println("{ \"language\": \"en\", \"entities\": [ { \"type\": \"Error\", \"text\": \"" +
-					e.toString() + "\", \"count\": 1 } ] }");
+			resp.sendError(HttpStatus.SC_BAD_GATEWAY, e.toString() );
 		}
 	}
 
 	@Override
 	public void init() throws ServletException {
 		super.init();
-
 		if (! getConfigParams()) {
 			processVCAPServices();
 			modelId = System.getenv("MODEL_ID");
 
 			if (modelId == null) {
-				// if no model ID found, set it to a value that will 
+				// if no model ID found, set it to a value that will
 				// let the user know what the issue is
 				modelId = "no_model_id_found";
 			}
 			logger.info("modelId = " + modelId);
 		}
+	}
+
+	/**
+	 * Value is considered entered if it is set, and doesn't equal the placeholder value
+	 */
+	private boolean keyValueEntered(String key, String value) {
+		if ((value != null) && (!value.isEmpty()) && (!value.startsWith("<add_"))) {
+			logger.info(key + " has been set to: " + value);
+			return true;
+		}
+		logger.info(key + " has NOT been set");
+		return false;
 	}
 
 	/**
@@ -129,27 +158,42 @@ public class DemoServlet extends HttpServlet {
 		try {
 			Properties props = new Properties();
 			props.load(this.getClass().getResourceAsStream(configFile));
+			baseURL = props.getProperty("NATURAL_LANGUAGE_UNDERSTANDING_URL");
+			apikey = props.getProperty("NATURAL_LANGUAGE_UNDERSTANDING_IAM_APIKEY");
 			username = props.getProperty("NATURAL_LANGUAGE_UNDERSTANDING_USERNAME");
 			password = props.getProperty("NATURAL_LANGUAGE_UNDERSTANDING_PASSWORD");
 			modelId = props.getProperty("WATSON_KNOWLEDGE_STUDIO_MODEL_ID");
-			logger.info("username = " + username);
-			logger.info("password = " + password);
-			logger.info("modelId = " + modelId);
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Reading config properties error: " + e.getMessage(), e);
 			return false;
 		}
 
-		// if one isn't set, consider them all not set
-		if (username.equals("<add_nlu_username>") ||
-				password.equals("<add_nlu_password>") ||
-				modelId.equals("<add_model_id>")) {
+		// make sure we have what we need
+
+		// always need model id
+		if (!keyValueEntered("config-modelId", modelId)) {
 			return false;
 		}
 
+		// always need nlu url
+		if (!keyValueEntered("config-baseURL", baseURL)) {
+			return false;
+		}
+
+		// need at least one type of credential
+		if (!keyValueEntered("config-apikey", apikey) &&
+			(!keyValueEntered("config-uname", username) || (!keyValueEntered("config-pwd", password)))) {
+			return false;
+		}
+
+		if (keyValueEntered("config-apikey", apikey)) {
+			useIamApiKey = true;
+		}
+
+		logger.info("using apikey = " + useIamApiKey);
+
 		return true;
 	}
-
 	/**
 	 * If exists, process the VCAP_SERVICES environment variable in order to get
 	 * the username, password and baseURL
@@ -169,12 +213,19 @@ public class DemoServlet extends HttpServlet {
 				JSONObject service = (JSONObject) services.get(0);
 				JSONObject credentials = (JSONObject) service
 						.get("credentials");
+				logger.info("VCAP: " + credentials);
 				baseURL = (String) credentials.get("url");
+				apikey = (String) credentials.get("apikey");
 				username = (String) credentials.get("username");
 				password = (String) credentials.get("password");
-				logger.info("baseURL  = " + baseURL);
-				logger.info("username = " + username);
-				logger.info("password = " + password);
+				if (keyValueEntered("vcap-apikey", apikey)) {
+					useIamApiKey = true;
+				}
+				logger.info("vcap-baseURL  = " + baseURL);
+				logger.info("vcap-apikey = " + apikey);
+				logger.info("vcap-username = " + username);
+				logger.info("vcap-password = " + password);
+				logger.info("vcap-using apikey = " + useIamApiKey);
 			} else {
 				logger.info("Doesn't match /^" + serviceName + "/");
 			}

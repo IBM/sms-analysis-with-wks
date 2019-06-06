@@ -75,9 +75,9 @@ $(document).ready(function() {
       },
       url: 'demo',
       dataType: 'json',
+      contentType:"application/x-www-form-urlencoded; charset=UTF-8",
       success: function(response) {
         $loading.hide();
-
         if (response.error) {
           showError(response.error);
         } else {
@@ -90,12 +90,12 @@ $(document).ready(function() {
       },
       error: function(xhr) {
         $loading.hide();
-
-        var error;
         try {
-          error = JSON.parse(xhr.responseText || {});
+
+          showError(xhr.responseText );
+
         } catch(e) {}
-        showError(error.error || error);
+
       }
     });
   });
@@ -107,7 +107,15 @@ $(document).ready(function() {
   function showError(error) {
     var defaultErrorMsg = 'Error processing the request, please try again later.';
     $error.show();
-    $errorMsg.text(error || defaultErrorMsg);
+    var errorResponse='';
+    if(error && error.indexOf("Error 502 :"))
+    {
+        errorResponse="Error:"+error.substring(11);
+    }
+    else {
+        errorResponse=error;
+    }
+    $errorMsg.text(errorResponse || defaultErrorMsg);
   }
 
   /**
@@ -168,9 +176,11 @@ $(document).ready(function() {
     var div = $('.summary-div');
     $('.outputWordCountMessage').text(data.word_count_message ? '**' + data.word_count_message + '.' : '');
     div.empty();
+
     paragraphs.forEach(function(sentences) {
       $('<p></p>').text(sentences.type+":"+sentences.text).appendTo(div);
     });
+
   }
 
 /**

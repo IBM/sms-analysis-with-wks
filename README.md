@@ -1,6 +1,6 @@
 # Analyzing SMS messages with Watson Knowledge Studio
 
-![Build Status](https://travis-ci.org/IBM/sms-analysis-with-wks.svg?branch=master)
+![Build Status](https://api.travis-ci.org/IBM/sms-analysis-with-wks.svg?branch=master)
 
 This code pattern describes how to analyze SMS messages with Watson Knowledge Studio (WKS) and Watson's Natural Language Understanding (NLU) capability to extract entities in the data. Current natural language processing techniques cannot extract or interpret data that is domain or industry specific because entities have different meanings in different domains. The best answer to such a problem is IBM's Watson Knowledge Studio. Consider a case where we need to extract entities present in a commercial SMS. For example:
 
@@ -57,7 +57,7 @@ In short, a type system is built and supporting documents are uploaded that have
 
 # Watch the Video
 
-TBD!
+[![](https://img.youtube.com/vi/lwW97UQj0RM/0.jpg)](https://youtu.be/lwW97UQj0RM)
 
 # Steps
 
@@ -83,8 +83,8 @@ $ git clone https://github.com/IBM/sms-analysis-with-wks
 
 Create the following services:
 
-* [**Watson Natural Language Understanding**](https://console.bluemix.net/catalog/services/natural-language-understanding)
-* [**Watson Knowledge Studio**](https://console.bluemix.net/catalog/services/knowledge-studio)
+* [**Watson Natural Language Understanding**](https://cloud.ibm.com/catalog/services/natural-language-understanding)
+* [**Watson Knowledge Studio**](https://cloud.ibm.com/catalog/services/knowledge-studio)
 
 > NOTE: Keep the Natural Language Understanding's API URL handy, you'll need it later. For example if you create your service in the Washington DC region then the URL will be: https://gateway-wdc.watsonplatform.net/natural-language-understanding/api
 
@@ -138,9 +138,12 @@ From the **Access & Tools -> Documents** panel, press the **Create Annotation Se
 
 ## 7. Create a Task for Human Annotation
 
+> Note: With the latest release of Watson Knowledge Studio, most of the remainig steps below reference menu actions that have been moved. There is a new **Machine Learning Model** menu item that has been added to the left side of the UI panel. It contains actions associated with **Tasks** (now referred to as **Annotation Tasks**), **Performance**, and **Versions**. Please keep this in mind as you navigate the following steps.
+
 Add a task for human annotation by creating a task and assigning it annotation sets.
 
 From the **Access & Tools -> Documents** panel, select the **Task** tab and press the **Add Task** button.
+
 
 ![](doc/source/images/wks/task-2-create_task.png)
 
@@ -253,7 +256,7 @@ Using cURL is the quickest way to show the advantages of WKS. Let's see the resu
 
 ### NLU with a WKS model
 
-In the following examples, replace `username` and `password` with your own **NLU** credentials. In this first example, we will also be adding an `entites.model` argument to the query string. Replace this value with your own **WKS** model ID.
+In the following examples, replace `$USERNAME` and `$PASSWORD` (or `$APIKEY`) with your own **NLU** credentials. In this first example, we will also be adding an `entites.model` argument to the query string. Replace `$MODEL_ID` with your own **WKS** model ID.
 
 The SMS text is URL encoded as it is passed as a query argument. Note that the model used to train and evaluate entities is based on a few sample SMS offers, which are located in the [data](data) directory of the local repository.
 
@@ -261,9 +264,14 @@ After issuing this cURL command, it is clear in the server response that we can 
 
 > NOTE: Replace the API URL in the command below with the one copied [from Step 2](#2-create-ibm-cloud-services).
 
+> NOTE: If using an IAM API key for authentication, replace the first line in the curl command with: 
+> ```
+> curl -u "apikey":"$APIKEY" \
+> ```
+
 ```
-curl -u "$username":"$password" \
-"https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2017-02-27&text=Valentines%20Day%20Offer%2c%20get%20Rs.10000%20cashback%20%2b%20No%20Cost%20EMI%20on%20all%20models%20of%20iPad.%20Valid%20till%20Feb%2014%20at%20your%20nearest%20Imagine.%20https%3a%2f%2fgoo.gl%2fhFJcfk&features=entities&entities.model=10:7907e3c0-44ba-42be-8f4f-5eff5a83a324"
+curl -u "$USERNAME":"$PASSWORD" \
+"https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2018-03-16&text=Valentines%20Day%20Offer%2c%20get%20Rs.10000%20cashback%20%2b%20No%20Cost%20EMI%20on%20all%20models%20of%20iPad.%20Valid%20till%20Feb%2014%20at%20your%20nearest%20Imagine.%20https%3a%2f%2fgoo.gl%2fhFJcfk&features=entities&entities.model=$MODEL_ID"
 ```
 
 ```
@@ -345,9 +353,14 @@ Using **NLU** without a **WKS** model ID is less ideal, as the server does not e
 
 > NOTE: Replace the API URL in the command below with the one copied [from Step 2](#2-create-ibm-cloud-services).
 
+> NOTE: If using an IAM API key for authentication, replace the first line in the curl command with: 
+> ```
+> curl -u "apikey":"$APIKEY" \
+> ```
+
 ```
-curl -u "$username":"$password" \
-"https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2017-02-27&text=Valentines%20Day%20Offer%2c%20get%20Rs.10000%20cashback%20%2b%20No%20Cost%20EMI%20on%20all%20models%20of%20iPad.%20Valid%20till%20Feb%2014%20at%20your%20nearest%20Imagine.%20https%3a%2f%2fgoo.gl%2fhFJcfk&features=entities"
+curl -u "$USERNAME":"$PASSWORD" \
+"https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2018-03-16&text=Valentines%20Day%20Offer%2c%20get%20Rs.10000%20cashback%20%2b%20No%20Cost%20EMI%20on%20all%20models%20of%20iPad.%20Valid%20till%20Feb%2014%20at%20your%20nearest%20Imagine.%20https%3a%2f%2fgoo.gl%2fhFJcfk&features=entities"
 ```
 
 ```
@@ -380,7 +393,7 @@ Use the ``Deploy to IBM Cloud`` button **OR** run locally.
 
 ### Deploy to IBM Cloud
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/sms-analysis-with-wks)
+[![Deploy to Bluemix](https://cloud.ibm.com/devops/setup/deploy/button.png)](https://cloud.ibm.com/devops/setup/deploy?repository=https://github.com/IBM/sms-analysis-with-wks)
 
 1. Press the above ``Deploy to IBM Cloud`` button and then click on ``Deploy``.
 
@@ -415,12 +428,18 @@ To download and install maven, refer to [maven.](https://maven.apache.org/downlo
 
 #### Add NLU Credentials and WKS Model ID to config.properties file
 
-The config.properties file is located in the `src/main/resources` directory. Replace the default values with the appropriate credentials and model ID values (quotes are not required).
+The config.properties file is located in the `src/main/resources` directory. Replace the default values with the appropriate credentials (either API key, or username/password) and model ID values (quotes are not required).
 
 ```
-NATURAL_LANGUAGE_UNDERSTANDING_USERNAME = <add_nlu_username>
-NATURAL_LANGUAGE_UNDERSTANDING_PASSWORD = <add_nlu_password>
-WATSON_KNOWLEDGE_STUDIO_MODEL_ID = <add_model_id>
+# Watson Natural Language Understanding
+NATURAL_LANGUAGE_UNDERSTANDING_URL=https://gateway.watsonplatform.net/natural-language-understanding/api
+## Un-comment and use either username+password or IAM apikey.
+NATURAL_LANGUAGE_UNDERSTANDING_IAM_APIKEY=<add_nlu_iam_apikey>
+#NATURAL_LANGUAGE_UNDERSTANDING_USERNAME=<add_nlu_username>
+#NATURAL_LANGUAGE_UNDERSTANDING_PASSWORD=<add_nlu_password>
+
+# Watson Knowledge Studio Model ID
+WATSON_KNOWLEDGE_STUDIO_MODEL_ID=<add_model_id>
 ```
 
 #### Build and Run
@@ -462,11 +481,13 @@ mvn test
 
 # Learn more
 
-* **Artificial Intelligence Code Patterns**: Enjoyed this Code Pattern? Check out our other [AI Code Patterns](https://developer.ibm.com/code/technologies/artificial-intelligence/).
+* **Artificial Intelligence Code Patterns**: Enjoyed this Code Pattern? Check out our other [AI Code Patterns](https://developer.ibm.com/technologies/artificial-intelligence/).
 * **AI and Data Code Pattern Playlist**: Bookmark our [playlist](https://www.youtube.com/playlist?list=PLzUbsvIyrNfknNewObx5N7uGZ5FKH0Fde) with all of our Code Pattern videos
 * **With Watson**: Want to take your Watson app to the next level? Looking to utilize Watson Brand assets? [Join the With Watson program](https://www.ibm.com/watson/with-watson/) to leverage exclusive brand, marketing, and tech resources to amplify and accelerate your Watson embedded commercial solution.
 * [Procurement Analysis with WKS](https://github.com/IBM/procurement-analysis-with-wks): Another code pattern that is focused on a procurement use case where WKS is used with Discovery and IBM Graph.
 
 # License
 
-[Apache 2.0](LICENSE)
+This code pattern is licensed under the Apache Software License, Version 2.  Separate third party code objects invoked within this code pattern are licensed by their respective providers pursuant to their own separate licenses. Contributions are subject to the [Developer Certificate of Origin, Version 1.1 (DCO)](https://developercertificate.org/) and the [Apache Software License, Version 2](https://www.apache.org/licenses/LICENSE-2.0.txt).
+
+[Apache Software License (ASL) FAQ](https://www.apache.org/foundation/license-faq.html#WhatDoesItMEAN)
