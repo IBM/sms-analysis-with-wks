@@ -84,9 +84,9 @@ $ git clone https://github.com/IBM/sms-analysis-with-wks
 Create the following services:
 
 * [**Watson Natural Language Understanding**](https://console.bluemix.net/catalog/services/natural-language-understanding)
-Note : Keep api url handy
-e.g. If you create instance in Washington DC then url will be like https://gateway-wdc.watsonplatform.net/natural-language-understanding/api
 * [**Watson Knowledge Studio**](https://console.bluemix.net/catalog/services/knowledge-studio)
+
+> NOTE: Keep the Natural Language Understanding's API URL handy, you'll need it later. For example if you create your service in the Washington DC region then the URL will be: https://gateway-wdc.watsonplatform.net/natural-language-understanding/api
 
 > NOTE: It is recommended that you name your NLU service `sms-nlu-service`. This will eliminate some steps if you eventually decide to deploy your app to the IBM Cloud.
 
@@ -259,9 +259,7 @@ The SMS text is URL encoded as it is passed as a query argument. Note that the m
 
 After issuing this cURL command, it is clear in the server response that we can see domain specific entities like `Offer`, `Offer_Period`, and `Merchant`.
 
-```
-Note: Replace API URL in below command with the one copied in step 2.
-```
+> NOTE: Replace the API URL in the command below with the one copied [from Step 2](#2-create-ibm-cloud-services).
 
 ```
 curl -u "$username":"$password" \
@@ -345,9 +343,7 @@ curl -u "$username":"$password" \
 
 Using **NLU** without a **WKS** model ID is less ideal, as the server does not extract the entities we are looking for. It extracts generic data such as company name and some location details, but it does not extract the domain specific offer details we desire.
 
-```
-Note: Replace API URL in below command with the one copied in step 2.
-```
+> NOTE: Replace the API URL in the command below with the one copied [from Step 2](#2-create-ibm-cloud-services).
 
 ```
 curl -u "$username":"$password" \
