@@ -84,9 +84,11 @@ $ git clone https://github.com/IBM/sms-analysis-with-wks
 Create the following services:
 
 * [**Watson Natural Language Understanding**](https://console.bluemix.net/catalog/services/natural-language-understanding)
+Note : Keep api url handy
+e.g. If you create instance in Washington DC then url will be like https://gateway-wdc.watsonplatform.net/natural-language-understanding/api
 * [**Watson Knowledge Studio**](https://console.bluemix.net/catalog/services/knowledge-studio)
 
-> NOTE: It is recommended that you name your NLU service `sms-nlu-service`. This will eliminate some steps if you eventually decide to deploy your app to the IBM Cloud. 
+> NOTE: It is recommended that you name your NLU service `sms-nlu-service`. This will eliminate some steps if you eventually decide to deploy your app to the IBM Cloud.
 
 ## 3. Create a Watson Knowledge Studio workspace
 
@@ -258,9 +260,15 @@ The SMS text is URL encoded as it is passed as a query argument. Note that the m
 After issuing this cURL command, it is clear in the server response that we can see domain specific entities like `Offer`, `Offer_Period`, and `Merchant`.
 
 ```
+Note: Replace API URL in below command with the one copied in step 2.
+```
+
+```
 curl -u "$username":"$password" \
 "https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2017-02-27&text=Valentines%20Day%20Offer%2c%20get%20Rs.10000%20cashback%20%2b%20No%20Cost%20EMI%20on%20all%20models%20of%20iPad.%20Valid%20till%20Feb%2014%20at%20your%20nearest%20Imagine.%20https%3a%2f%2fgoo.gl%2fhFJcfk&features=entities&entities.model=10:7907e3c0-44ba-42be-8f4f-5eff5a83a324"
+```
 
+```
 {
   "usage": {
     "text_units": 1,
@@ -338,9 +346,15 @@ curl -u "$username":"$password" \
 Using **NLU** without a **WKS** model ID is less ideal, as the server does not extract the entities we are looking for. It extracts generic data such as company name and some location details, but it does not extract the domain specific offer details we desire.
 
 ```
+Note: Replace API URL in below command with the one copied in step 2.
+```
+
+```
 curl -u "$username":"$password" \
 "https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2017-02-27&text=Valentines%20Day%20Offer%2c%20get%20Rs.10000%20cashback%20%2b%20No%20Cost%20EMI%20on%20all%20models%20of%20iPad.%20Valid%20till%20Feb%2014%20at%20your%20nearest%20Imagine.%20https%3a%2f%2fgoo.gl%2fhFJcfk&features=entities"
+```
 
+```
 {
   "usage": {
     "text_units": 1,
