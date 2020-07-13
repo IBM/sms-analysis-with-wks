@@ -255,12 +255,12 @@ Using cURL is the quickest way to show the advantages of WKS. Let's see the resu
 
 In the following examples, replace `username` and `password` with your own **NLU** credentials. In this first example, we will also be adding an `entites.model` argument to the query string. Replace this value with your own **WKS** model ID.
 
-The SMS text is URL encoded as it is passed as a query argument. Note that the model used to train and evaluate entities is based on a few sample SMS offers, which are located in the [data](data) directory of the local repository.
+The SMS text is URL encoded as it is passed as a query argument when we use old authenication mechanism of username/password. For new authentication mechanism of using IAM key, we pass sms as simple text argument. Note that the model used to train and evaluate entities is based on a few sample SMS offers, which are located in the [data](data) directory of the local repository.
 
 After issuing this cURL command, it is clear in the server response that we can see domain specific entities like `Offer`, `Offer_Period`, and `Merchant`.
 
 ```
-Note: Replace API URL in below command with the one copied in step 2.
+Note: If using an IAM API key for authentication, use the first curl command and if using old authentication then use second curl command.
 ```
 
 ```
@@ -346,7 +346,7 @@ curl -u "$username":"$password" \
 Using **NLU** without a **WKS** model ID is less ideal, as the server does not extract the entities we are looking for. It extracts generic data such as company name and some location details, but it does not extract the domain specific offer details we desire.
 
 ```
-Note: Replace API URL in below command with the one copied in step 2.
+Note: If using an IAM API key for authentication, use the first curl command and if using old authentication then use second curl command.
 ```
 
 ```
