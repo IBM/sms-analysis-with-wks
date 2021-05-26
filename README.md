@@ -86,7 +86,7 @@ Create the following services:
 * [**Watson Natural Language Understanding**](https://cloud.ibm.com/catalog/services/natural-language-understanding)
 * [**Watson Knowledge Studio**](https://cloud.ibm.com/catalog/services/knowledge-studio)
 
-> NOTE: Keep the Natural Language Understanding's API URL handy, you'll need it later. For example if you create your service in the Washington DC region then the URL will be: https://gateway-wdc.watsonplatform.net/natural-language-understanding/api
+> NOTE: Keep the Natural Language Understanding's API Key and URL handy, you'll need it later. For example if you create your service in the Dallas region then the URL will be: https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/{instance-id}
 
 > NOTE: It is recommended that you name your NLU service `sms-nlu-service`. This will eliminate some steps if you eventually decide to deploy your app to the IBM Cloud.
 
@@ -262,16 +262,10 @@ The SMS text is URL encoded as it is passed as a query argument. Note that the m
 
 After issuing this cURL command, it is clear in the server response that we can see domain specific entities like `Offer`, `Offer_Period`, and `Merchant`.
 
-> NOTE: Replace the API URL in the command below with the one copied [from Step 2](#2-create-ibm-cloud-services).
-
-> NOTE: If using an IAM API key for authentication, replace the first line in the curl command with: 
-> ```
-> curl -u "apikey":"$APIKEY" \
-> ```
+> NOTE: Replace the API Key and URL in the command below with the one copied [from Step 2](#2-create-ibm-cloud-services).
 
 ```
-curl -u "$USERNAME":"$PASSWORD" \
-"https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2018-03-16&text=Valentines%20Day%20Offer%2c%20get%20Rs.10000%20cashback%20%2b%20No%20Cost%20EMI%20on%20all%20models%20of%20iPad.%20Valid%20till%20Feb%2014%20at%20your%20nearest%20Imagine.%20https%3a%2f%2fgoo.gl%2fhFJcfk&features=entities&entities.model=$MODEL_ID"
+curl -u "apikey:${APIKEY}" "${APIURL}/v1/analyze?version=2018-03-16&text=Valentines%20Day%20Offer%2c%20get%20Rs.10000%20cashback%20%2b%20No%20Cost%20EMI%20on%20all%20models%20of%20iPad.%20Valid%20till%20Feb%2014%20at%20your%20nearest%20Imagine.%20https%3a%2f%2fgoo.gl%2fhFJcfk&features=entities&entities.model=${MODEL_ID}"
 ```
 
 ```
@@ -351,16 +345,10 @@ curl -u "$USERNAME":"$PASSWORD" \
 
 Using **NLU** without a **WKS** model ID is less ideal, as the server does not extract the entities we are looking for. It extracts generic data such as company name and some location details, but it does not extract the domain specific offer details we desire.
 
-> NOTE: Replace the API URL in the command below with the one copied [from Step 2](#2-create-ibm-cloud-services).
-
-> NOTE: If using an IAM API key for authentication, replace the first line in the curl command with: 
-> ```
-> curl -u "apikey":"$APIKEY" \
-> ```
+> NOTE: Replace the API Key and URL in the command below with the one copied [from Step 2](#2-create-ibm-cloud-services).
 
 ```
-curl -u "$USERNAME":"$PASSWORD" \
-"https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2018-03-16&text=Valentines%20Day%20Offer%2c%20get%20Rs.10000%20cashback%20%2b%20No%20Cost%20EMI%20on%20all%20models%20of%20iPad.%20Valid%20till%20Feb%2014%20at%20your%20nearest%20Imagine.%20https%3a%2f%2fgoo.gl%2fhFJcfk&features=entities"
+curl -u "apikey:${APIKEY}" "${APIURL}/v1/analyze?version=2018-03-16&text=Valentines%20Day%20Offer%2c%20get%20Rs.10000%20cashback%20%2b%20No%20Cost%20EMI%20on%20all%20models%20of%20iPad.%20Valid%20till%20Feb%2014%20at%20your%20nearest%20Imagine.%20https%3a%2f%2fgoo.gl%2fhFJcfk&features=entities"
 ```
 
 ```
@@ -432,7 +420,7 @@ The config.properties file is located in the `src/main/resources` directory. Rep
 
 ```
 # Watson Natural Language Understanding
-NATURAL_LANGUAGE_UNDERSTANDING_URL=https://gateway.watsonplatform.net/natural-language-understanding/api
+NATURAL_LANGUAGE_UNDERSTANDING_URL=<add_nlu_url>
 ## Un-comment and use either username+password or IAM apikey.
 NATURAL_LANGUAGE_UNDERSTANDING_IAM_APIKEY=<add_nlu_iam_apikey>
 #NATURAL_LANGUAGE_UNDERSTANDING_USERNAME=<add_nlu_username>
