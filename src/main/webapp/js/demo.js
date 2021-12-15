@@ -305,17 +305,5 @@ function showVizualization(theProfile) {
     $('.wordsCount').text(wordsCount);
   }
 
-  function onSampleTextChange() {
-    var isEnglish = $('#english_radio').is(':checked');
-    language = isEnglish ? 'en' : 'es';
-
-    $.get('text/' + language + '.txt').done(function(text) {
-      $content.val(text);
-      updateWordsCount();
-    });
-  }
-
-  onSampleTextChange();
   $content.keyup(updateWordsCount);
-  $('.sample-radio').change(onSampleTextChange);
 });

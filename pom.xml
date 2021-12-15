@@ -146,7 +146,7 @@
   	<dependency>
   		<groupId>org.jsoup</groupId>
   		<artifactId>jsoup</artifactId>
-  		<version>1.10.1</version>
+  		<version>1.14.2</version>
   	</dependency>
   	<dependency>
   		<groupId>com.ibm.watson.developer_cloud</groupId>
@@ -156,7 +156,7 @@
   	<dependency>
   		<groupId>junit</groupId>
   		<artifactId>junit</artifactId>
-  		<version>4.12</version>
+  		<version>4.13.1</version>
   	</dependency>
 		<dependency>
 		    <groupId>com.squareup.okhttp3</groupId>
@@ -171,7 +171,7 @@
 		<dependency>
 		  <groupId>org.apache.httpcomponents</groupId>
 		  <artifactId>httpclient</artifactId>
-		  <version>4.3.6</version>
+		  <version>4.5.13</version>
 		</dependency>
 		<dependency>
   <groupId>org.apache.httpcomponents</groupId>
@@ -206,7 +206,7 @@
 		<dependency>
 	    <groupId>ch.qos.logback</groupId>
 	    <artifactId>logback-classic</artifactId>
-	    <version>1.2.3</version>
+	    <version>1.2.8</version>
 		</dependency>
 
   </dependencies>
