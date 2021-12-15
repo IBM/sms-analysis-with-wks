@@ -15,30 +15,20 @@
 
 package com.ibm.watson.nlu;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.ibm.json.java.JSONArray;
+import com.ibm.json.java.JSONObject;
+import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.AnalysisResults;
+import org.apache.http.HttpStatus;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.client.fluent.Executor;
-import org.apache.http.client.fluent.Request;
-import org.apache.http.client.fluent.Response;
-import org.apache.http.entity.ContentType;
-
-import com.ibm.json.java.JSONArray;
-import com.ibm.json.java.JSONObject;
-import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.AnalysisResults;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @MultipartConfig
 public class DemoServlet extends HttpServlet {
@@ -49,13 +39,14 @@ public class DemoServlet extends HttpServlet {
 	private String serviceName = "natural-language-understanding";
 
 	// If running locally complete the variables below
+	// (in the config.properties file).
 	// with the information in VCAP_SERVICES
 	private String baseURL = "<url>";
 	private String username = "<username>";
 	private String password = "<password>";
 	private String apikey = "<apikey>";
 	private String modelId = "";
-	private boolean useIamApiKey = false;
+	private boolean useIamApiKey = true;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -69,7 +60,7 @@ public class DemoServlet extends HttpServlet {
 	 * @param req
 	 *            the Http Servlet request
 	 * @param resp
-	 *            the Http Servlet pesponse
+	 *            the Http Servlet response
 	 * @throws ServletException
 	 *             the servlet exception
 	 * @throws IOException
@@ -86,8 +77,6 @@ public class DemoServlet extends HttpServlet {
 
 		// create the request
 		String text = req.getParameter("text");
-		String language = req.getParameter("language");
-		String locale = req.getLocale().toString().replace("_", "-");
 
 		try {
 			SimpleNLUClient client = new SimpleNLUClient();
